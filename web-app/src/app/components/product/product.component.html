@@ -1,1 +1,14 @@
 <p>product works!</p>
+<div>
+    
+    <ul>
+    <li *ngFor="let i of products">
+        <img src = '/Images/blueRB'/>
+        
+        {{i.productName}}
+        {{i.price}}
+        {{i.description}}
+        {{i.quantity}}
+    </li>
+    </ul>
+</div>
