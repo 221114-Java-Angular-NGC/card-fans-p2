@@ -1,1 +1,26 @@
-<p>cart works!</p>
+<h2>Shopping Cart</h2>
+<p>{{cart.length}} items in your cart</p>
+
+<div class="cart-table" *ngIf="cart.length != 0">
+    <table class="table">
+        <thead>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let entry of cart">
+                <td>{{entry.image}}</td>
+                <td>{{entry.name}}</td>
+                <td>{{entry.quantity}}</td>
+                <td>{{entry.price}}</td>
+                <td>{{entry.total}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="grand-total">
+        <p><strong>Grand Total: #####</strong></p>
+    </div>
+</div>
