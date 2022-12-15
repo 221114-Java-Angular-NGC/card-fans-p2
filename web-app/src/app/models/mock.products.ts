@@ -10,7 +10,7 @@ export const PRODUCTS: Product[] = [
       price: 5.99,
       description:
         'Bird lovers from all over flock together to find a copy of this lovely deck',
-      pic: '',
+      pic: '../../../../../Images/aviary',
       quantity: 17,
     },
     {
@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
       price: 6.99,
       description:
         'This deck is a real hot commodity with phoenixes gracing the back and the suit symbols set ablaze',
-      pic: '',
+      pic: '../../../../../Images/fyrebird',
       quantity: 450,
     },
     {
@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
       price: 6.99,
       description:
         'Do white background cards burn your eyes? If so then do we have a deck for you!',
-      pic: '',
+      pic: '../../../../../Images/darkMode',
       quantity: 56,
     },
     {
@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
       price: 5.99,
       description:
         'Mythical beasts of majesty dawn the backs of these gorgeous cards',
-      pic: '',
+      pic: '../../../../../Images/dragon',
       quantity: 77,
     },
     {
@@ -61,7 +61,7 @@ export const PRODUCTS: Product[] = [
       backgroundColor: 'white',
       price: 4.99,
       description: 'An all-time classic',
-      pic: '',
+      pic: '../../../../../Images/redRB',
       quantity: 100,
     },
     {
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
       backgroundColor: 'white',
       price: 4.99,
       description: 'An all-time classic',
-      pic: '',
+      pic: '../../../../../Images/blueRB',
       quantity: 100,
     },
     {
@@ -99,7 +99,7 @@ export const PRODUCTS: Product[] = [
       price: 5.99,
       description:
         'Unlike the actual sun, you can stare at these beauties all day and still retain your sight',
-      pic: '',
+      pic: '../../../../../Images/sunspot',
       quantity: 27,
     },
     {
