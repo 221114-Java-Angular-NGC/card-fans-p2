@@ -27,22 +27,24 @@
   </style>
 </head>
 <body>
-  <div style="text-align: center; color: white; background-color: black;">
+  <div style="text-align: center; color: white; background-color: black">
     <h2>PLAYING CARDS</h2>
-    <div style="padding-bottom: 20px;">
+    <div style="padding-bottom: 20px">
       A collection of the finest decks of cards in the world.
     </div>
   </div>
 
   <div class="productGrid">
-    <ul *ngFor="let i of products" style="list-style: none;">
+    <ul *ngFor="let i of products" style="list-style: none">
       <div>
         <img [src]="i.pic" alt="picture?" width="150" height="150" />
         <li>{{ i.productName }}</li>
         <li>${{ i.price }}</li>
         <li>{{ i.description }}</li>
         <li>{{ i.quantity }} left!</li>
-        <button id="addCart" class="btn btn-sm btn-outline-primary me-2">Add to cart</button>
+        <button id="addCart" class="btn btn-sm btn-outline-primary me-2">
+          Add to cart
+        </button>
       </div>
     </ul>
   </div>
