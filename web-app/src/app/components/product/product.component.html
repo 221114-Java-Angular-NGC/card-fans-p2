@@ -27,17 +27,17 @@
   </style>
 </head>
 <body>
-  <div style="text-align: center; color: white; background-color: black;">
+  <div style="text-align: center; color: white; background-color: black">
     <h2>PLAYING CARDS</h2>
-    <div style="padding-bottom: 20px;">
+    <div style="padding-bottom: 20px">
       A collection of the finest decks of cards in the world.
     </div>
   </div>
 
   <div class="productGrid">
-    <ul *ngFor="let i of products" style="text-align: center; list-style: none;">
+    <ul *ngFor="let i of products" style="text-align: center; list-style: none">
       <div class="card">
-        <img src="{{i.pic}}" class="card-img-top" alt="{{i.productName}}">
+        <img src="{{i.pic}}" class="card-img-top" alt="{{i.productName}}" />
         <div class="card-body">
           <h5 class="card-title">{{ i.productName }}</h5>
           <p class="card-text">{{ i.description }}</p>
