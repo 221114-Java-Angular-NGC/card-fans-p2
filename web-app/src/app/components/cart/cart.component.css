@@ -2,7 +2,11 @@
     text-align: center;
 }
 
-th {
+tbody > tr td {
+    border-top: 1px solid black;
+}
+
+tr:last-child td {
     border-bottom: 1px solid black;
 }
 
@@ -11,6 +15,24 @@ input {
     text-align: center;
 }
 
-#grand-total {
-    justify-content: end;
+.delete{
+    color: red;
+    cursor: pointer;
+}
+
+.delete:hover{
+    color: black;
+}
+
+.container {
+    margin-top: 3%;
+}
+
+#grand-total p {
+    text-align: right;
+    margin-right: 3%;
+}
+
+#bottom-links {
+    margin: auto 6% auto;
 }
