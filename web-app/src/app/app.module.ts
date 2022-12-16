@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductComponent } from './components/product/product.component';
-import { AuthComponent } from './components/authentication/auth.component';
+
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -21,7 +21,7 @@ import { AuthService } from './services/authentication/auth.service';
   declarations: [
     AppComponent,
     ProductComponent,
-    AuthComponent,
+
     HomeComponent,
     LoginComponent,
     RegisterComponent,

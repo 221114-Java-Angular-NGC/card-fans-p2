@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }),
   });
 
-  constructor(private router: Router, public authServ: AuthService) {
+  constructor(private router: Router, private authServ: AuthService) {
     this.isComponentAlive = true;
   }
 
