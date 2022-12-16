@@ -1,6 +1,16 @@
 * {
     text-align: center;
 }
+
+th {
+    border-bottom: 1px solid black;
+}
+
+input {
+    width: 2.5rem;
+    text-align: center;
+}
+
 #grand-total {
     justify-content: end;
 }
