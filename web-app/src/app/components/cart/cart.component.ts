@@ -9,21 +9,21 @@ import { CartEntry } from './cartentry';
 })
 export class CartComponent {
 
-  // cart: CartEntry[]
+  cart: CartEntry[]
 
-  // constructor(private cartService: CartService) {
-  //   this.cart = this.cartService.Cart;
-  // }
+  constructor(private cartService: CartService) {
+    this.cart = this.cartService.Cart;
+  }
 
-  cart: CartEntry[] = [
-    {prodId: 1, name: 'aviary', image: 'aviary.jpg', quantity: 3, price: 5.99, total: 17.97}, 
-    {prodId: 3, name: 'Dark Mode', image: 'darkMode.jpg', quantity: 4, price: 6.99, total: 27.95},
-    {prodId: 9, name: 'Avengers', image: 'avengers.jpg', quantity: 2, price: 7.99, total: 15.98}];
+  // cart: CartEntry[] = [
+  //   {prodId: 1, name: 'aviary', image: 'aviary.jpg', quantity: 3, price: 5.99, total: 17.97}, 
+  //   {prodId: 3, name: 'Dark Mode', image: 'darkMode.jpg', quantity: 4, price: 6.99, total: 27.95},
+  //   {prodId: 9, name: 'Avengers', image: 'avengers.jpg', quantity: 2, price: 7.99, total: 15.98}];
 
 
   removeItem(index: number): void{
-    this.cart.splice(index, 1);
-    //this.cart = this.cartService.removeFromCart(index);
+    // this.cart.splice(index, 1);
+    this.cart = this.cartService.removeFromCart(index);
   }
 
   getGrandTotal(): number{
@@ -36,7 +36,7 @@ export class CartComponent {
 
   updateTotal(index:number): void{
     this.cart[index].total = Number((this.cart[index].quantity * this.cart[index].price).toFixed(2));
-    // this.cartService.Cart = this.cart;
+    this.cartService.Cart = this.cart;
   }
 
 }

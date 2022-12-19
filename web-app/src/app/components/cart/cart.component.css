@@ -19,6 +19,15 @@ input {
     text-align: center;
 }
 
+.entry-image {
+    height: 100px;
+    width: 100px;
+    margin: auto;
+}
+
+.entry-image img {
+    height: 100px;
+}
 
 .delete{
     color: red;

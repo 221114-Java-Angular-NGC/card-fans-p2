@@ -44,7 +44,7 @@
           <li class="list-group-item">${{ i.price }}</li>
         </ul>
         <div class="card-body">
-          <a href="#" class="btn btn-danger">Add to cart</a>
+          <a class="btn btn-danger" (click)="addCart(i.productId)" >Add to cart</a>
         </div>
       </div>
     </ul>
