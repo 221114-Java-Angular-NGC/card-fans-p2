@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { User } from './models/user.model';
 import { AuthService } from './services/authentication/auth.service';
 
 @Component({
@@ -9,6 +10,11 @@ import { AuthService } from './services/authentication/auth.service';
 export class AppComponent {
   title = 'web-app';
   public authenticated: boolean = false;
+
+  //if authenticated==true then
+  //currentUser contains user info
+  currentUser?: User | undefined;
+
   constructor(private authServ: AuthService) {}
 
   ngOnInit(): void {
@@ -21,6 +27,11 @@ export class AppComponent {
     this.authServ.currentUser.subscribe((data) => {
       if (typeof data == 'boolean') {
         this.authenticated = data;
+
+        let temp = localStorage.getItem('currentUser');
+        if (temp) {
+          this.currentUser = JSON.parse(temp);
+        }
       }
     });
   }

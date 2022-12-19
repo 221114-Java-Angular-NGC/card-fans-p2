@@ -1,5 +1,6 @@
 package com.revature.cardfans.controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @RestController
-@RequestMapping(path = ("/api"), produces = "application/json")
+@RequestMapping(path = ("/api/v1/users"), produces = "application/json")
 
 public class UserController {
 
@@ -29,7 +30,8 @@ public class UserController {
 
     }
 
-    @GetMapping("/users/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") Integer id) {
 
         Optional<User> _user = uServ.getUserById(id);
@@ -42,18 +44,4 @@ public class UserController {
 
     }
 
-    @PostMapping("/users")
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-
-        try {
-
-            user.setUserType(1);
-            User _user = uServ.registerUser(user);
-            return new ResponseEntity<>(_user, HttpStatus.CREATED);
-        } catch (Exception e) {
-            ResponseEntity<User> r = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            return r;
-
-        }
-    }
 }

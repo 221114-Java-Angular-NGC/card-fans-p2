@@ -12,15 +12,15 @@ import com.revature.cardfans.models.User;
 
 @Repository
 public interface UserDao extends JpaRepository<User, Long> {
-    Optional<User> findByUserName(String userName);
+    Optional<User> findByUsername(String userName);
 
     Optional<User> findByUserId(int userId);
 
-    Optional<User> findByUserEmail(String userEmail);
+    Optional<User> findByEmail(String userEmail);
 
-    Boolean existsByUserName(String userName);
+    Boolean existsByUsername(String userName);
 
-    Boolean existsByUserEmail(String userEmail);
+    Boolean existsByEmail(String userEmail);
 
     User save(User user);
 

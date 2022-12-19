@@ -17,10 +17,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RestDataSource } from './services/rest.datasource';
 import { AuthService } from './services/authentication/auth.service';
+import { NgbdModalComponent } from './components/modal/popup-modal.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MockDataSource } from './services/mock.datasource';
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
+    NgbdModalComponent,
 
     HomeComponent,
     LoginComponent,
@@ -32,12 +36,21 @@ import { AuthService } from './services/authentication/auth.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
   ],
-  providers: [RestDataSource, AuthService],
+  providers: [
+    AuthService,
+    RestDataSource,
+    MockDataSource,
+    //Mocking RestDataSource, replace MockDataSource
+    //with RestDataSource when using actual backend api
+    { provide: RestDataSource, useClass: MockDataSource },
+    //{ provide: RestDataSource, useClass: RestDataSource }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

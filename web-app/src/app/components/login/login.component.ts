@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { takeWhile } from 'rxjs';
 import { AuthService } from 'src/app/services/authentication/auth.service';
-
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'login-form',
+
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit, OnDestroy {
@@ -28,7 +30,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     }),
   });
 
-  constructor(private router: Router, private authServ: AuthService) {
+  constructor(
+    private router: Router,
+    private authServ: AuthService,
+    public activeModal: NgbActiveModal
+  ) {
     this.isComponentAlive = true;
   }
 
@@ -54,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe((response) => {
           if (response) {
             this.router.navigateByUrl('/products');
+            this.activeModal.close();
           } else {
             this.errorMessage = 'User name or password is incorrect';
           }

@@ -21,25 +21,31 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
+    @NotNull
     private int userId;
 
-    private String userFirstName;
+    @NotNull
+    private String firstName;
 
-    private String userLastName;
+    @NotNull
+    private String lastName;
 
-    private String userName;
+    @NotNull
+    @Column(name = "user_name")
+    private String username;
 
-    private String userEmail;
+    @NotNull
+    private String email;
 
+    @NotNull
     private String password;
-
-    private Integer userType;
 
     @Column(name = "address_line_1")
     private String addressLine1;

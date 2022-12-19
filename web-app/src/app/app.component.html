@@ -23,22 +23,18 @@
         <button class="btn btn-outline-danger" type="button">Search</button>
       </div>
       <div class="navbar-nav">
-        <a
-          *ngIf="!authenticated"
-          class="btn btn-outline-danger me-2"
-          role="button"
-          routerLink="/login"
-          ><i class="fa-solid fa-user"></i></a
-        >
+        <ngbd-modal-component *ngIf="!authenticated"></ngbd-modal-component>
         <a
           *ngIf="authenticated"
           class="btn btn-outline-danger me-2"
           role="button"
-          >Hi user</a
+          routerLink="/products"
+          ><i class="fa-solid fa-user"></i>Hi
+          {{currentUser?.username ??"user"}}</a
         >
         <a class="btn btn-outline-danger" role="button" routerLink="/cart"
-          ><i class="fa-solid fa-cart-shopping"></i></a
-        >
+          ><i class="fa-solid fa-cart-shopping"></i
+        ></a>
       </div>
     </div>
   </nav>

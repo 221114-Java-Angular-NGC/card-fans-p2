@@ -17,7 +17,7 @@ public class UserServiceImpl implements IUserService {
         userDao = u;
 
     }
-    
+
     @Override
     public User registerUser(User user) {
         return userDao.save(user);
@@ -32,7 +32,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Optional<User> login(String userName, String password) {
-        // TODO Auto-generated method stub
+        Optional<User> user = userDao.findByUsername(userName);
+        if (user.isPresent()) {
+            if (user.get().getPassword().compareTo(password) == 0) {
+                return user;
+            }
+        }
         return Optional.empty();
     }
 
