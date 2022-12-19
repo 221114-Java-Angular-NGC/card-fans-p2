@@ -24,14 +24,7 @@
       </div>
       <div class="navbar-nav">
         <ngbd-modal-component *ngIf="!authenticated"></ngbd-modal-component>
-        <a
-          *ngIf="authenticated"
-          class="btn btn-outline-danger me-2"
-          role="button"
-          routerLink="/products"
-          ><i class="fa-solid fa-user"></i>Hi
-          {{currentUser?.username ??"user"}}</a
-        >
+        <info-popover *ngIf="authenticated"></info-popover>
         <a class="btn btn-outline-danger" role="button" routerLink="/cart"
           ><i class="fa-solid fa-cart-shopping"></i
         ></a>

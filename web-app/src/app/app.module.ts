@@ -20,6 +20,8 @@ import { AuthService } from './services/authentication/auth.service';
 import { NgbdModalComponent } from './components/modal/popup-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MockDataSource } from './services/mock.datasource';
+import { UserInfoPopoverComponent } from './components/user-info-popover/user-info-popover.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { MockDataSource } from './services/mock.datasource';
     CartComponent,
     CheckoutComponent,
     ConfirmationComponent,
+    UserInfoPopoverComponent,
   ],
   imports: [
     BrowserModule,

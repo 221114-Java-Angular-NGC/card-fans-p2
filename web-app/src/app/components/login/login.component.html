@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header px-4 py-3">
   <h3 class="modal-title">Log in</h3>
   <button
     type="button"
@@ -7,16 +7,19 @@
     (click)="activeModal.dismiss('Cross click')"
   ></button>
 </div>
-<div class="modal-body">
+
+<div class="modal-body px-4 py-3">
   <form [formGroup]="loginForm" (ngSubmit)="formSubmit(loginForm)">
     <ng-container>
-      <div class="form-group">
+      <div class="form-group mb-3">
+        <label for="usernameInput" class="form-label">User Name</label>
         <input
+          class="mb-3"
           formControlName="username"
           type="text"
           class="form-control"
           id="usernameInput"
-          placeholder="User Name"
+          placeholder=""
         />
         <div
           [style.display]="
@@ -31,13 +34,14 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group mb-3">
+        <label for="passwordInput" class="form-label">Password</label>
         <input
           formControlName="password"
           type="text"
           class="form-control"
           id="passwordInput"
-          placeholder="Password"
+          placeholder=""
         />
         <div
           [style.display]="
@@ -54,16 +58,23 @@
       <div *ngIf="errorMessage.length > 0" class="alert alert-danger">
         <p>{{errorMessage}}</p>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="mb-3" style="text-align: center">
+        <span>
+          New?
+          <a
+            id="viewRegister"
+            class="formToggle"
+            tabindex="900"
+            (click)="this.activeModal.close()"
+            routerLink="/register"
+          >
+            Create an account
+          </a>
+        </span>
+      </div>
+      <div style="text-align: center">
+        <button type="submit" class="btn btn-primary">Log in</button>
+      </div>
     </ng-container>
   </form>
-</div>
-<div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-outline-dark"
-    (click)="activeModal.close('Close click')"
-  >
-    Close
-  </button>
 </div>
