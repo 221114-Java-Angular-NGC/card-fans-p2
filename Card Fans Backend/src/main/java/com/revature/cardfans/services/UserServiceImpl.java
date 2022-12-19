@@ -31,6 +31,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public Optional<User> updateUserInfo(User user) {
+
+        User user2 = userDao.save(user);
+
+        if (user2 != null) {
+            return Optional.of(user2);
+        }
+
+        return Optional.of(user);
+    }
+
+    @Override
     public Optional<User> login(String userName, String password) {
         Optional<User> user = userDao.findByUsername(userName);
         if (user.isPresent()) {

@@ -31,13 +31,20 @@ export class RestDataSource {
       .pipe(catchError((err) => this.handleError(err)));
   }
 
+  //Update userinfo to database
+  update(user: User): Observable<User> {
+    return this.http
+      .put<User>(this.baseUrl + 'users', user, {})
+      .pipe(catchError((err) => this.handleError(err)));
+  }
+
   //Throw error for any http request failures
   private handleError(res: HttpErrorResponse | any) {
     return throwError(() => new Error('Error is data service'));
   }
 
   /*
-  getProducts(): Observable<Product[]> {
+  getProducts(): Observable<Poductr[]> {
     return this.http.get<Product[]>(this.baseUrl + 'products');
   }
 

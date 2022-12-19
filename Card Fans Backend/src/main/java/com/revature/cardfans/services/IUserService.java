@@ -12,4 +12,6 @@ public interface IUserService {
 
     public Optional<User> getUserById(int id);
 
+    public Optional<User> updateUserInfo(User user);
+
 }

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,20 @@ public class UserController {
             return new ResponseEntity<>(_user.get(), HttpStatus.CREATED);
         } else {
             ResponseEntity<User> r = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return r;
+        }
+
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("")
+    public ResponseEntity<User> getUser(@RequestBody User user) {
+
+        Optional<User> _user = uServ.updateUserInfo(user);
+        if (_user.isPresent()) {
+            return new ResponseEntity<>(_user.get(), HttpStatus.ACCEPTED);
+        } else {
+            ResponseEntity<User> r = new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
             return r;
         }
 

@@ -7,6 +7,7 @@ import { takeWhile } from 'rxjs';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/services/user/user-service.service';
 @Component({
   selector: 'login-form',
 
@@ -33,11 +34,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authServ: AuthService,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private uServ: UserService
   ) {
     this.isComponentAlive = true;
   }
 
+  //subscribe to form input changes
   ngOnInit(): void {
     this.loginForm
       .get('username')
@@ -55,18 +58,25 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (form.valid) {
       const { username, password } = form.value;
 
+      //attempt to log in ser
       this.authServ
         .authenticate(username ?? '', password ?? '')
         .subscribe((response) => {
+          //if successful, response is User object
           if (response) {
-            this.router.navigateByUrl('/products');
+            //save and goto profile component
+            this.uServ.saveUserDetails(response);
+            this.router.navigateByUrl('/profile');
+            //close log in popup
             this.activeModal.close();
           } else {
+            //log in failure
             this.errorMessage = 'User name or password is incorrect';
           }
         });
     } else {
-      this.errorMessage = 'Form Data Invalid';
+      //form invalid
+      this.errorMessage = 'Please enter username and password';
     }
   }
 }

@@ -5,7 +5,13 @@ import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import { LoginRequest } from '../models/login-request.model';
 import { USERS } from '../models/mock.users';
+interface Point {
+  readonly x: number;
 
+  readonly y: number;
+
+  readonly z?: number;
+}
 /*Class to mock http requests until we create a legit one */
 @Injectable()
 export class MockDataSource {
@@ -37,6 +43,12 @@ export class MockDataSource {
       catchError((err) => this.handleError(err))
     );
   }
+
+  //Update userinfo
+  update(user: User): Observable<User> {
+    return of(user);
+  }
+
   //Throw error for any request failures
   private handleError(res: HttpErrorResponse | any) {
     return throwError(() => new Error('Error in mock data service'));

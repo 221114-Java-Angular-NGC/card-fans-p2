@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/authentication/auth.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
   selector: 'info-popover',
@@ -11,11 +12,12 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 export class UserInfoPopoverComponent {
   currentUser?: User | undefined;
 
-  constructor(private router: Router, private authServ: AuthService) {
-    let temp = localStorage.getItem('currentUser');
-    if (temp) {
-      this.currentUser = JSON.parse(temp);
-    }
+  constructor(
+    private router: Router,
+    private authServ: AuthService,
+    private uServ: UserService
+  ) {
+    this.currentUser = uServ.currentUser;
   }
 
   logout() {
