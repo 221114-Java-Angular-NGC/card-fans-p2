@@ -1,7 +1,7 @@
 <div class="container">
 <h2>Shopping Cart</h2>
 <ng-container *ngIf="cart.length == 0; else showCart">
-    <h4>No items in your cart. <a routerLink="/products">Click here to browse for some!</a></h4>
+    <h5 class="no-items">No items in your cart. <a routerLink="/products">Click here to browse for some!</a></h5>
 </ng-container>
 
 <ng-template #showCart>
