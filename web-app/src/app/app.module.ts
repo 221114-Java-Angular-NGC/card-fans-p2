@@ -21,6 +21,7 @@ import { NgbdModalComponent } from './components/modal/popup-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MockDataSource } from './services/mock.datasource';
 import { UserInfoPopoverComponent } from './components/user-info-popover/user-info-popover.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UserInfoPopoverComponent } from './components/user-info-popover/user-in
     CheckoutComponent,
     ConfirmationComponent,
     UserInfoPopoverComponent,
+    ProductPageComponent,
   ],
   imports: [
     BrowserModule,

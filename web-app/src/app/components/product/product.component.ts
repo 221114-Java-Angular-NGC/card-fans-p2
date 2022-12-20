@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { PRODUCTS } from '../../models/mock.products';
+import { Component, Input } from '@angular/core';
+
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CartEntry } from '../cart/cartentry';
@@ -9,9 +9,9 @@ import { CartEntry } from '../cart/cartentry';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-
+  @Input() products: Product[] = [];
   cart: CartEntry[];
-  products: Product[] = PRODUCTS;
+  
 
   constructor(private cartService: CartService) {
       this.cart = this.cartService.Cart;
@@ -19,5 +19,14 @@ export class ProductComponent {
 
   addCart (prodId: number) {
     this.cartService.addToCart(prodId);
+  }
+
+  cartButtonPress (element: any) {
+    element.textContent = "Added!";
+    element.className = "btn btn-dark";
+    setTimeout(() => {
+      element.textContent = "Add to Cart";
+      element.className = "btn btn-danger";
+    }, 1000);
   }
 }
