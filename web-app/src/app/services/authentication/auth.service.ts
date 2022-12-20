@@ -21,9 +21,11 @@ export class AuthService {
 
   //Inject Rest Data source to issue HTTP authentication requests
   constructor(private datasource: RestDataSource) {
+    //check if uer already authenticated
     let firstValue: boolean = localStorage.getItem('currentUser')
       ? true
       : false;
+    //broadcast authencation status
     this.authenticatedSubject = new BehaviorSubject<any>(firstValue);
     this.authenticated = this.authenticatedSubject.asObservable();
   }
