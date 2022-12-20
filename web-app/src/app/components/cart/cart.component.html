@@ -17,9 +17,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let entry of cart; let i = index">
-                    <td>{{entry.image}}</td>
+                    <td><div class="entry-image"><img src="{{entry.image}}" class="card-img-top" alt="{{entry.name}}" /></div></td>
                     <td>{{entry.name}}</td>
-                    <td><input type="number" [(ngModel)] = entry.quantity step="1" (change)="updateTotal(i)" min="1"></td>
+                    <td><input type="number" [(ngModel)] = entry.quantity step="1" (change)="updateTotal(i)" min="1" class="bg-dark text-white"></td>
                     <td>${{entry.price}}</td>
                     <td>${{entry.total.toFixed(2)}}</td>
                     <td (click)="removeItem(i)"><span class="delete">X</span></td>
