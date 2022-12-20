@@ -1,1 +1,80 @@
-<p>register works!</p>
+<div class="modal-header px-3 py-2">
+    <h3 class="modal-title">Register</h3>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    ></button>
+  </div>
+  
+  <div class="modal-body px-4 py-3">
+    <form [formGroup]="registerForm" (ngSubmit)="formSubmit(registerForm)">
+      <ng-container>
+        <div class="form-group mb-3">
+          <label for="usernameInput" class="form-label">User Name</label>
+          <input
+            class="mb-3"
+            formControlName="username"
+            type="text"
+            class="form-control"
+            id="usernameInput"
+            placeholder=""
+          />
+          <div
+            [style.display]="
+              registerForm.get('username')?.getError('required') &&
+              !registerForm.get('username')?.pristine
+                ? 'block'
+                : 'none'
+            "
+            class="alert alert-danger"
+          >
+            Please enter username
+          </div>
+        </div>
+  
+        <div class="form-group mb-3">
+          <label for="passwordInput" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="text"
+            class="form-control"
+            id="passwordInput"
+            placeholder=""
+          />
+          <div
+            [style.display]="
+              registerForm.get('password')?.getError('required') &&
+              !registerForm.get('password')?.pristine
+                ? 'block'
+                : 'none'
+            "
+            class="alert alert-danger"
+          >
+            Please enter password
+          </div>
+        </div>
+        <div *ngIf="errorMessage.length > 0" class="alert alert-danger">
+          <p>{{errorMessage}}</p>
+        </div>
+        <div class="mb-3" style="text-align: center">
+          <span>
+            New?
+            <a
+              id="viewRegister"
+              class="formToggle"
+              tabindex="900"
+              (click)="this.activeModal.close()"
+              routerLink="/register"
+            >
+              Create an account
+            </a>
+          </span>
+        </div>
+        <div style="text-align: center">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </ng-container>
+    </form>
+  </div>

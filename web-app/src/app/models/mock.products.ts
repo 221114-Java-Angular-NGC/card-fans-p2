@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
     price: 6.99,
     description:
       'This deck is a real hot commodity with phoenixes gracing the back and the suit symbols set ablaze',
-    pic: '../../../assets/Images/fyrebird',
+    pic: '../../../assets/Images/fyrebird.jpg',
     quantity: 450,
   },
   {
@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     price: 6.99,
     description:
       'Do white background cards burn your eyes? If so then do we have a deck for you!',
-    pic: '../../../assets/Images/darkMode',
+    pic: '../../../assets/Images/darkMode.jpg',
     quantity: 56,
   },
   {
@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
     price: 5.99,
     description:
       'Mythical beasts of majesty dawn the backs of these gorgeous cards',
-    pic: '../../../assets/Images/dragon',
+    pic: '../../../assets/Images/dragon.jpg',
     quantity: 77,
   },
   {
@@ -61,7 +61,7 @@ export const PRODUCTS: Product[] = [
     backgroundColor: 'white',
     price: 4.99,
     description: 'An all-time classic',
-    pic: '../../../assets/Images/redRB',
+    pic: '../../../assets/Images/redRB.jpg',
     quantity: 100,
   },
   {
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
     backgroundColor: 'white',
     price: 4.99,
     description: 'An all-time classic',
-    pic: '../../../assets/Images/blueRB',
+    pic: '../../../assets/Images/blueRB.jpg',
     quantity: 100,
   },
   {
@@ -99,7 +99,7 @@ export const PRODUCTS: Product[] = [
     price: 5.99,
     description:
       'Unlike the actual sun, you can stare at these beauties all day and still retain your sight',
-    pic: '../../../assets/Images/stargazerSunspot',
+    pic: '../../../assets/Images/stargazerStargazerSunspot.jpg',
     quantity: 27,
   },
   {
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
     backgroundColor: 'white',
     price: 5.99,
     description: '',
-    pic: '../../../assets/Images/archangel',
+    pic: '../../../assets/Images/archangel.jpg',
     quantity: 10,
   },
   {
@@ -135,19 +135,19 @@ export const PRODUCTS: Product[] = [
     backgroundColor: 'white',
     price: 7.99,
     description: '',
-    pic: '../../../assets/Images/majesty',
+    pic: '../../../assets/Images/majesty.jpg',
     quantity: 75,
   },
   {
     productId: 12,
-    productName: 'Strgazer: Nebula',
+    productName: 'Stargazer: Nebula',
     suitColors: 'red, white',
     faceType: 'standard',
     theme: 'space',
     backgroundColor: 'black',
     price: 6.99,
     description: '',
-    pic: '../../../assets/Images/stargazerNebula',
+    pic: '../../../assets/Images/stargazerNebula.jpg',
     quantity: 88,
   },
   {
@@ -159,7 +159,7 @@ export const PRODUCTS: Product[] = [
     backgroundColor: 'white',
     price: 5.99,
     description: '',
-    pic: '../../../assets/Images/amplified',
+    pic: '../../../assets/Images/amplified.jpg',
     quantity: 15,
   },
 ];
