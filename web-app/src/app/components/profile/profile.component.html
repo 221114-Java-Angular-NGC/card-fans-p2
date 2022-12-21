@@ -1,8 +1,11 @@
-<section style="background-color: #f4f5f7">
+<section style="background-color: #394148">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-6 mb-4 mb-lg-0">
-        <div class="card mb-3" style="border-radius: 0.5rem">
+        <div
+          class="card mb-3"
+          style="border-radius: 0.5rem; background-color: #e7ecf0"
+        >
           <div class="row g-0">
             <div
               class="col-md-4 gradient-custom text-center"
@@ -15,14 +18,14 @@
                 src="https://raw.githubusercontent.com/twbs/icons/main/icons/person.svg"
                 alt="Avatar"
                 class="img-fluid my-5"
-                style="width: 80px"
+                style="width: 80px; color: black"
               />
               <h5>
-                {{currentUser?.firstName ?? 'user'}}
-                {{currentUser?.lastName ?? 'user'}}
+                {{ currentUser?.firstName ?? "user" }}
+                {{ currentUser?.lastName ?? "user" }}
               </h5>
 
-              <i class="far fa-edit mb-5"></i>
+              <i class="far fa-edit mb-5" style="color: black"></i>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
@@ -32,7 +35,7 @@
                   <div class="col-6 mb-3">
                     <h6>Email</h6>
                     <p class="text-muted">
-                      {{currentUser?.email ?? 'info@email.com'}}
+                      {{ currentUser?.email ?? "info@email.com" }}
                     </p>
                   </div>
                 </div>
@@ -41,10 +44,10 @@
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <p class="text-muted">
-                      {{currentUser?.addressLine1 ??'123 Street'}}
-                      {{currentUser?.city ?? 'New York'}}
-                      {{currentUser?.zipCode ?? '40203'}}
-                      {{currentUser?.state ?? 'NY'}}
+                      {{ currentUser?.addressLine1 ?? "123 Street" }}
+                      {{ currentUser?.city ?? "New York" }}
+                      {{ currentUser?.zipCode ?? "40203" }}
+                      {{ currentUser?.state ?? "NY" }}
                     </p>
                   </div>
                 </div>

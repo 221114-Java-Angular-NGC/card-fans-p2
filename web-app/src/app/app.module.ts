@@ -51,8 +51,8 @@ import { UserInfoPopoverComponent } from './components/user-info-popover/user-in
     MockDataSource,
     //Mocking RestDataSource, replace MockDataSource
     //with RestDataSource when using actual backend api
-    //{ provide: RestDataSource, useClass: MockDataSource },
-    { provide: RestDataSource, useClass: RestDataSource },
+    { provide: RestDataSource, useClass: MockDataSource },
+    //{ provide: RestDataSource, useClass: RestDataSource },
   ],
   bootstrap: [AppComponent],
 })
