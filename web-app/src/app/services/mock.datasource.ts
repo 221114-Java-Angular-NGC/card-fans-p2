@@ -5,13 +5,7 @@ import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import { LoginRequest } from '../models/login-request.model';
 import { USERS } from '../models/mock.users';
-interface Point {
-  readonly x: number;
 
-  readonly y: number;
-
-  readonly z?: number;
-}
 /*Class to mock http requests until we create a legit one */
 @Injectable()
 export class MockDataSource {
@@ -46,9 +40,19 @@ export class MockDataSource {
 
   //Update userinfo
   update(user: User): Observable<User> {
+    let index = this.mockUsers.findIndex(
+      (element) => element.userId == user.userId
+    );
+    if (index) this.mockUsers[index] = user;
+    console.log(user);
     return of(user);
   }
 
+  //Update userinfo to database
+  register(user: User): Observable<User> {
+    this.mockUsers.push(user);
+    return of(user);
+  }
   //Throw error for any request failures
   private handleError(res: HttpErrorResponse | any) {
     return throwError(() => new Error('Error in mock data service'));

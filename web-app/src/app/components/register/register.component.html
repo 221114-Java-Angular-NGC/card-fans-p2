@@ -1,80 +1,176 @@
-<div class="modal-header px-3 py-2">
-    <h3 class="modal-title">Register</h3>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="activeModal.dismiss('Cross click')"
-    ></button>
-  </div>
-  
-  <div class="modal-body px-4 py-3">
-    <form [formGroup]="registerForm" (ngSubmit)="formSubmit(registerForm)">
-      <ng-container>
-        <div class="form-group mb-3">
-          <label for="usernameInput" class="form-label">User Name</label>
-          <input
-            class="mb-3"
-            formControlName="username"
-            type="text"
-            class="form-control"
-            id="usernameInput"
-            placeholder=""
-          />
-          <div
-            [style.display]="
-              registerForm.get('username')?.getError('required') &&
-              !registerForm.get('username')?.pristine
-                ? 'block'
-                : 'none'
-            "
-            class="alert alert-danger"
-          >
-            Please enter username
+<div class="modal-header px-4 py-3 bg-dark">
+  <h3 class="modal-title">Register</h3>
+
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+
+<div class="modal-body px-4 py-3 bg-dark">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <span style="text-align: center">
+      Been here before?
+      <a
+        id="viewRegister"
+        class="formToggle"
+        tabindex="900"
+        (click)="openLogin()"
+      >
+        Log in
+      </a>
+    </span>
+
+    <div class="container py-5 h-150">
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="formSubmit(profileForm)"
+        class="row d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First name</label>
+              <input
+                type="text"
+                formControlName="firstName"
+                id="firstName"
+                class="form-control"
+              />
+              <ul class="text-danger list-unstyled mt-1">
+                <li
+                  *validationErrors="
+                    profileForm;
+                    control: 'firstName';
+                    label: 'firstName';
+                    let err
+                  "
+                >
+                  {{ err }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last name</label>
+              <input
+                type="text"
+                formControlName="lastName"
+                class="form-control"
+              />
+              <ul class="text-danger list-unstyled mt-1">
+                <li
+                  *validationErrors="profileForm; control: 'lastName'; let err"
+                >
+                  {{ err }}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-  
-        <div class="form-group mb-3">
-          <label for="passwordInput" class="form-label">Password</label>
+
+        <div class="form-group row mb-4">
+          <label class="form-label" for="addressLine1">Address</label>
           <input
-            formControlName="password"
             type="text"
+            formControlName="addressLine1"
             class="form-control"
-            id="passwordInput"
-            placeholder=""
           />
-          <div
-            [style.display]="
-              registerForm.get('password')?.getError('required') &&
-              !registerForm.get('password')?.pristine
-                ? 'block'
-                : 'none'
-            "
-            class="alert alert-danger"
-          >
-            Please enter password
-          </div>
-        </div>
-        <div *ngIf="errorMessage.length > 0" class="alert alert-danger">
-          <p>{{errorMessage}}</p>
-        </div>
-        <div class="mb-3" style="text-align: center">
-          <span>
-            New?
-            <a
-              id="viewRegister"
-              class="formToggle"
-              tabindex="900"
-              (click)="this.activeModal.close()"
-              routerLink="/register"
+          <ul class="text-danger list-unstyled mt-1">
+            <li
+              *validationErrors="profileForm; control: 'addressLine1'; let err"
             >
-              Create an account
-            </a>
-          </span>
+              {{ err }}
+            </li>
+          </ul>
         </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-group">
+              <label class="form-label" for="city">City</label>
+              <input type="text" formControlName="city" class="form-control" />
+              <ul class="text-danger list-unstyled mt-1">
+                <li *validationErrors="profileForm; control: 'city'; let err">
+                  {{ err }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label class="form-label" for="zipCode">Zip code</label>
+              <input
+                type="text"
+                formControlName="zipCode"
+                class="form-control"
+              />
+              <ul class="text-danger list-unstyled mt-1">
+                <li
+                  *validationErrors="profileForm; control: 'zipCode'; let err"
+                >
+                  {{ err }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label class="form-label" for="state">State</label>
+              <input type="text" formControlName="state" class="form-control" />
+              <ul class="text-danger list-unstyled mt-1">
+                <li *validationErrors="profileForm; control: 'state'; let err">
+                  {{ err }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email input -->
+        <div class="form-group mb-4">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" formControlName="email" class="form-control" />
+          <ul class="text-danger list-unstyled mt-1">
+            <li *validationErrors="profileForm; control: 'email'; let err">
+              {{ err }}
+            </li>
+          </ul>
+        </div>
+        <!--username-->
+        <div class="form-group mb-4">
+          <label class="form-label" for="username">Username</label>
+          <input type="text" formControlName="username" class="form-control" />
+          <ul class="text-danger list-unstyled mt-1">
+            <li *validationErrors="profileForm; control: 'username'; let err">
+              {{ err }}
+            </li>
+          </ul>
+        </div>
+        <!-- Password input -->
+        <div class="form-group mb-4">
+          <label class="form-label" for="password">Password</label>
+          <ul class="text-danger list-unstyled mt-1">
+            <li *validationErrors="profileForm; control: 'password'; let err">
+              {{ err }}
+            </li>
+          </ul>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+          />
+        </div>
+        <!-- Submit button -->
         <div style="text-align: center">
-          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="submit" class="btn btn-primary btn btn-danger">
+            Create my account
+          </button>
         </div>
-      </ng-container>
-    </form>
+      </form>
+    </div>
   </div>
+</div>

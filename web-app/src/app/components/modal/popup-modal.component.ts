@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
+import { RegisterComponent } from '../register/register.component';
 //import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -18,6 +19,8 @@ export class NgbdModalComponent {
 
   open() {
     const modalRef = this.modalService.open(LoginComponent);
+    //const regModalRef = this.modalService.open(RegisterComponent);
     modalRef.componentInstance.name = 'Login';
+    // regModalRef.componentInstance.name = 'Register';
   }
 }

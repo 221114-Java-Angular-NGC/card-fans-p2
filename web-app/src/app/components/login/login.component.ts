@@ -3,11 +3,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { takeWhile } from 'rxjs';
+import { delay, takeWhile } from 'rxjs';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user/user-service.service';
+import { RegisterComponent } from '../register/register.component';
+
 @Component({
   selector: 'login-form',
 
@@ -35,7 +37,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private authServ: AuthService,
     public activeModal: NgbActiveModal,
-    private uServ: UserService
+    private uServ: UserService,
+    private modalService: NgbModal
   ) {
     this.isComponentAlive = true;
   }
@@ -54,6 +57,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isComponentAlive = false;
   }
 
+  openRegister() {
+    this.modalService.dismissAll();
+    this.modalService.open(RegisterComponent);
+  }
   formSubmit(form: FormGroup): void {
     if (form.valid) {
       const { username, password } = form.value;
