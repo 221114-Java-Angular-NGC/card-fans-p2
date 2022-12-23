@@ -20,9 +20,7 @@ export class CartComponent {
   //   {prodId: 3, name: 'Dark Mode', image: 'darkMode.jpg', quantity: 4, price: 6.99, total: 27.95},
   //   {prodId: 9, name: 'Avengers', image: 'avengers.jpg', quantity: 2, price: 7.99, total: 15.98}];
 
-
   removeItem(index: number): void{
-    // this.cart.splice(index, 1);
     this.cart = this.cartService.removeFromCart(index);
   }
 

@@ -99,7 +99,7 @@ export const PRODUCTS: Product[] = [
     price: 5.99,
     description:
       'Unlike the actual sun, you can stare at these beauties all day and still retain your sight',
-    pic: '../../../assets/Images/stargazerStargazerSunspot.jpg',
+    pic: '../../../assets/Images/stargazerSunspot.jpg',
     quantity: 27,
   },
   {

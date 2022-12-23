@@ -14,7 +14,7 @@ export class CartService {
   }
 
   set Cart(newCart: CartEntry[]) {
-    this.cart$ = Object.assign({}, ...newCart);
+    this.cart$ = newCart.slice(0);
   }
   constructor() { }
 
