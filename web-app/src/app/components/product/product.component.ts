@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CartEntry } from '../cart/cartentry';
+import { ProductPopupComponent } from '../product-popup/product-popup.component';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -13,7 +15,7 @@ export class ProductComponent {
   cart: CartEntry[];
   
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private modalService: NgbModal) {
       this.cart = this.cartService.Cart;
   }
 
@@ -21,12 +23,19 @@ export class ProductComponent {
     this.cartService.addToCart(prodId);
   }
 
-  cartButtonPress (element: any) {
+  cartButtonPress (event: any) {
+    let element = event.target;
+    event.stopPropagation();
+
     element.textContent = "Added!";
     element.className = "btn btn-dark";
     setTimeout(() => {
       element.textContent = "Add to Cart";
       element.className = "btn btn-danger";
     }, 1000);
+  }
+
+  openModal(index: number) {
+    this.modalService.open(ProductPopupComponent);
   }
 }
