@@ -38,7 +38,7 @@ export class RestDataSource {
       .pipe(catchError((err) => this.handleError(err)));
   }
 
-  //Update userinfo to database
+  //Register userinfo to database
   register(user: User): Observable<User> {
     return this.http
       .post<User>(this.baseUrl + 'auth/signup', user, {})

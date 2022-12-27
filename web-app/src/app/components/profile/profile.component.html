@@ -77,6 +77,18 @@
                 id="firstName"
                 class="form-control"
               />
+              <ul class="text-danger list-unstyled mt-1">
+                <li
+                  *validationErrors="
+                    profileForm;
+                    control: 'firstName';
+                    label: 'first name';
+                    let err
+                  "
+                >
+                  {{ err }}
+                </li>
+              </ul>
             </div>
           </div>
           <div class="col">
@@ -87,6 +99,18 @@
                 formControlName="lastName"
                 class="form-control"
               />
+              <ul class="text-danger list-unstyled mt-1">
+                <li
+                  *validationErrors="
+                    profileForm;
+                    control: 'lastName';
+                    label: 'last name';
+                    let err
+                  "
+                >
+                  {{ err }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -98,6 +122,18 @@
             formControlName="addressLine1"
             class="form-control"
           />
+          <ul class="text-danger list-unstyled mt-1">
+            <li
+              *validationErrors="
+                profileForm;
+                control: 'addressLine1';
+                label: 'address';
+                let err
+              "
+            >
+              {{ err }}
+            </li>
+          </ul>
         </div>
 
         <div class="row mb-4">
@@ -105,6 +141,11 @@
             <div class="form-outline">
               <label class="form-label" for="city">City</label>
               <input type="text" formControlName="city" class="form-control" />
+              <ul class="text-danger list-unstyled mt-1">
+                <li *validationErrors="profileForm; control: 'city'; let err">
+                  {{ err }}
+                </li>
+              </ul>
             </div>
           </div>
           <div class="col">
@@ -115,12 +156,29 @@
                 formControlName="zipCode"
                 class="form-control"
               />
+              <ul class="text-danger list-unstyled mt-1">
+                <li
+                  *validationErrors="
+                    profileForm;
+                    control: 'zipCode';
+                    label: 'zip code';
+                    let err
+                  "
+                >
+                  {{ err }}
+                </li>
+              </ul>
             </div>
           </div>
           <div class="col">
             <div class="form-outline">
               <label class="form-label" for="state">State</label>
               <input type="text" formControlName="state" class="form-control" />
+              <ul class="text-danger list-unstyled mt-1">
+                <li *validationErrors="profileForm; control: 'state'; let err">
+                  {{ err }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -129,6 +187,11 @@
         <div class="form-outline mb-4">
           <label class="form-label" for="email">Email</label>
           <input type="email" formControlName="email" class="form-control" />
+          <ul class="text-danger list-unstyled mt-1">
+            <li *validationErrors="profileForm; control: 'email'; let err">
+              {{ err }}
+            </li>
+          </ul>
         </div>
 
         <!-- Submit button -->

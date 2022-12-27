@@ -67,18 +67,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }),
     });
   }
-  ngOnInit(): void {
-    this.profileForm.statusChanges.subscribe((newStatus) => {
-      if (newStatus == 'INVALID') {
-        let invalidControls: string[] = [];
-        for (let controlName in this.profileForm.controls) {
-          if (this.profileForm.controls[controlName].invalid) {
-            invalidControls.push(controlName);
-          }
-        }
-      }
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.isComponentAlive = false;

@@ -44,7 +44,7 @@
                   *validationErrors="
                     profileForm;
                     control: 'firstName';
-                    label: 'firstName';
+                    label: 'first name';
                     let err
                   "
                 >
@@ -63,7 +63,12 @@
               />
               <ul class="text-danger list-unstyled mt-1">
                 <li
-                  *validationErrors="profileForm; control: 'lastName'; let err"
+                  *validationErrors="
+                    profileForm;
+                    control: 'lastName';
+                    label: 'last name';
+                    let err
+                  "
                 >
                   {{ err }}
                 </li>
@@ -81,7 +86,12 @@
           />
           <ul class="text-danger list-unstyled mt-1">
             <li
-              *validationErrors="profileForm; control: 'addressLine1'; let err"
+              *validationErrors="
+                profileForm;
+                control: 'addressLine1';
+                label: 'address';
+                let err
+              "
             >
               {{ err }}
             </li>
@@ -110,7 +120,12 @@
               />
               <ul class="text-danger list-unstyled mt-1">
                 <li
-                  *validationErrors="profileForm; control: 'zipCode'; let err"
+                  *validationErrors="
+                    profileForm;
+                    control: 'zipCode';
+                    label: 'zip code';
+                    let err
+                  "
                 >
                   {{ err }}
                 </li>
@@ -153,16 +168,17 @@
         <!-- Password input -->
         <div class="form-group mb-4">
           <label class="form-label" for="password">Password</label>
-          <ul class="text-danger list-unstyled mt-1">
-            <li *validationErrors="profileForm; control: 'password'; let err">
-              {{ err }}
-            </li>
-          </ul>
+
           <input
             type="password"
             formControlName="password"
             class="form-control"
           />
+          <ul class="text-danger list-unstyled mt-1">
+            <li *validationErrors="profileForm; control: 'password'; let err">
+              {{ err }}
+            </li>
+          </ul>
         </div>
         <!-- Submit button -->
         <div style="text-align: center">

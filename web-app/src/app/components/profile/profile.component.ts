@@ -54,14 +54,8 @@ export class ProfileComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.profileForm.get('email')?.valueChanges.subscribe(() => {
-      this.profileForm.get('email')?.updateValueAndValidity();
-    });
-  }
+  ngOnInit(): void {}
   formSubmit(form: FormGroup): void {
-    console.log(form.value);
-
     //check if form is valid
     if (form.valid && this.currentUser) {
       let user: User = { ...form.value };
