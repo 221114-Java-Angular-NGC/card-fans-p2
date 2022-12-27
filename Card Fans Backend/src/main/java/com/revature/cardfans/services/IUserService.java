@@ -6,7 +6,7 @@ import com.revature.cardfans.models.User;
 
 public interface IUserService {
 
-    public User registerUser(User user);
+    public Optional<User> registerUser(User user);
 
     public Optional<User> login(String userName, String password);
 

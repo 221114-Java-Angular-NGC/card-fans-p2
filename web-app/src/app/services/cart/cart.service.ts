@@ -4,7 +4,7 @@ import { CartEntry } from 'src/app/components/cart/cartentry';
 import { PRODUCTS } from 'src/app/models/mock.products';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   private cart$: CartEntry[] = [];
@@ -16,15 +16,15 @@ export class CartService {
   set Cart(newCart: CartEntry[]) {
     this.cart$ = newCart.slice(0);
   }
-  constructor() { }
+  constructor() {}
 
-  addToCart(id: number): void{
+  addToCart(id: number): void {
     //check if the product is already in the cart
     //only checks if the cart isn't empty
     if (this.cart$.length != 0) {
       for (let entry of this.cart$) {
         //updates quantity and total when it finds a product with the same id
-        if (entry.prodId == id ) {
+        if (entry.prodId == id) {
           entry.quantity += 1;
           entry.total = entry.price * entry.quantity;
           return;
@@ -35,7 +35,7 @@ export class CartService {
     //get product entry by from the server and add it to the cart
     //for now we're using mock product
     let productList = PRODUCTS;
-    for(let product of productList) {
+    for (let product of productList) {
       if (product.productId == id) {
         this.cart$.push({
           prodId: id,
@@ -43,16 +43,14 @@ export class CartService {
           image: product.pic,
           quantity: 1,
           price: product.price,
-          total: product.price
-        })
+          total: product.price,
+        });
       }
     }
-
   }
 
-  removeFromCart(index: number): CartEntry[]{
+  removeFromCart(index: number): CartEntry[] {
     this.cart$.splice(index, 1);
     return this.cart$;
   }
-    
 }

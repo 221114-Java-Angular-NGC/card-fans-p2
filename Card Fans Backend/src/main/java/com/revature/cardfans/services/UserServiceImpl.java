@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j // creates log object usage: log.info("test")
 @Service
+
 public class UserServiceImpl implements IUserService {
     @Autowired
     private UserDao userDao;
@@ -22,9 +23,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User registerUser(User user) {
+    public Optional<User> registerUser(User user) {
         log.info("Attemping to register user");
-        return userDao.save(user);
+        return Optional.of(userDao.save(user));
 
     }
 
@@ -39,15 +40,13 @@ public class UserServiceImpl implements IUserService {
     // else returns
     @Override
     public Optional<User> updateUserInfo(User user) {
+
         log.info("Attemping to update user info");
-        User user2 = userDao.save(user);
+        Optional<User> user2 = Optional.of(userDao.save(user));
 
-        if (user2 != null) {
-            log.info("User info updated succesfully");
-            return Optional.of(user2);
-        }
+        user2.ifPresentOrElse((x) -> log.info("User info updated succesfully"), () -> log.info("Unsucceful update"));
 
-        return Optional.of(user);
+        return user2;
     }
 
     // Lookup username info, if valid user with username
@@ -55,19 +54,14 @@ public class UserServiceImpl implements IUserService {
     // else returns empty optional
     @Override
     public Optional<User> login(String userName, String password) {
+
         log.info("Searching for user with username:{}", userName);
         Optional<User> user = userDao.findByUsername(userName);
-        if (user.isPresent()) {
-            log.info("User found with username:{}", userName);
-            if (user.get().getPassword().compareTo(password) == 0) {
-                log.info("Credentials match, returning user:{}", user);
-                return user;
-            }
-            log.info("password incorrect");
 
-        }
-        log.info("Login attempt failed");
-        return Optional.empty();
+        user.ifPresentOrElse((x) -> log.info("User found with username:{}", userName),
+                () -> log.info("Login attempt failed"));
+
+        return user;
     }
 
 }

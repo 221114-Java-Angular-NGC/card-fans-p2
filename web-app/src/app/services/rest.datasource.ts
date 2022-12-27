@@ -38,6 +38,12 @@ export class RestDataSource {
       .pipe(catchError((err) => this.handleError(err)));
   }
 
+  //Register userinfo to database
+  register(user: User): Observable<User> {
+    return this.http
+      .post<User>(this.baseUrl + 'auth/signup', user, {})
+      .pipe(catchError((err) => this.handleError(err)));
+  }
   //Throw error for any http request failures
   private handleError(res: HttpErrorResponse | any) {
     return throwError(() => new Error('Error is data service'));

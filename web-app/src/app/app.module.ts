@@ -23,7 +23,10 @@ import { MockDataSource } from './services/mock.datasource';
 import { UserInfoPopoverComponent } from './components/user-info-popover/user-info-popover.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductPopupComponent } from './components/product-popup/product-popup.component';
-
+import { ValidationHelper } from './components/validation/validation_helper';
+import { ValidationErrorsDirective } from './components/validation/validationErrors.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +41,8 @@ import { ProductPopupComponent } from './components/product-popup/product-popup.
     CheckoutComponent,
     ConfirmationComponent,
     UserInfoPopoverComponent,
+    ValidationHelper,
+    ValidationErrorsDirective,
     ProductPageComponent,
     ProductPopupComponent,
   ],
@@ -48,6 +53,8 @@ import { ProductPopupComponent } from './components/product-popup/product-popup.
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,

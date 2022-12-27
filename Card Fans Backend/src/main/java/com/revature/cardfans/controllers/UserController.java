@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.cardfans.models.Order;
 import com.revature.cardfans.models.User;
 import com.revature.cardfans.services.IUserService;
+import com.revature.cardfans.services.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -25,14 +29,16 @@ import org.springframework.http.ResponseEntity;
 @Slf4j
 @RestController
 @RequestMapping(path = ("/api/v1/users"), produces = "application/json")
-
+@CrossOrigin(origins = "*")
 public class UserController {
 
-    @Autowired
     private IUserService uServ;
+    private OrderService orderServ;
 
-    public UserController(IUserService uServ) {
+    @Autowired
+    public UserController(IUserService uServ, OrderService orderServ) {
         this.uServ = uServ;
+        this.orderServ = orderServ;
 
     }
 
@@ -41,36 +47,29 @@ public class UserController {
      * If user exists, returns user info and response code CREATED
      * else returns response code NOT_FOUND
      */
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") Integer id) {
 
-        Optional<User> _user = uServ.getUserById(id);
-        if (_user.isPresent()) {
-            log.info("User with id: {} found , returning user info in body", id);
-            return new ResponseEntity<>(_user.get(), HttpStatus.CREATED);
-        } else {
-            log.info("No user with id: {} found", id);
-            ResponseEntity<User> r = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            return r;
-        }
+        Optional<User> user = uServ.getUserById(id);
+        return user.map(ResponseEntity::ok).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));
 
     }
 
     /* Handles user info updates request */
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("")
     public ResponseEntity<User> updateUser(@Valid @RequestBody User user) {
 
         Optional<User> _user = uServ.updateUserInfo(user);
-        if (_user.isPresent()) {
-            log.info("Returning updated user info");
-            return new ResponseEntity<>(_user.get(), HttpStatus.ACCEPTED);
-        } else {
-            log.info("Something went wrong with user registration");
-            ResponseEntity<User> r = new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-            return r;
-        }
+        return _user.map(ResponseEntity::ok).orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+
+    }
+
+    /* Gets all orders placed by user_id */
+    @GetMapping("/{userId}/orders")
+    public ResponseEntity<List<Order>> getOrders(@PathVariable("userId") Integer userId) {
+
+        List<Order> orders = orderServ.getOrdersByUserId(userId);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
 
     }
 

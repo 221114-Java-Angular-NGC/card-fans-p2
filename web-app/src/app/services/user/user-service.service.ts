@@ -18,10 +18,11 @@ export class UserService {
     //console.log('in user service constructor');
     //subscribe to log in and log out events
     this.authServ.authenticated.subscribe((isAuthenticated) => {
-      //get new current user details
+      //get new or current user details
       if (isAuthenticated) {
         this.initializeUserDetailsIfExists();
       } else {
+        this.logout();
       }
     });
   }
@@ -36,6 +37,22 @@ export class UserService {
       map((response) => {
         if (response) {
           this.saveUserDetails(response);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err) => {
+        return of(false);
+      })
+    );
+  }
+
+  //updates user info to backend database
+  registerUser(user: User): Observable<boolean> {
+    return this.datasource.register(user).pipe(
+      map((response) => {
+        if (response) {
           return true;
         } else {
           return false;
