@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { withInMemoryScrolling } from '@angular/router';
-import { CartEntry } from 'src/app/components/cart/cartentry';
+import { CartEntry } from 'src/app/models/cartentry.model';
 import { PRODUCTS } from 'src/app/models/mock.products';
 
 @Injectable({

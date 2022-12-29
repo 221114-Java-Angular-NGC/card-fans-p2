@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { CartEntry } from '../cart/cartentry';
+import { CartEntry } from '../../models/cartentry.model';
 import { ProductPopupComponent } from '../product-popup/product-popup.component';
 @Component({
   selector: 'app-product',
