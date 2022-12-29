@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { CartEntry } from './cartentry';
+import { UserService } from 'src/app/services/user/user-service.service';
+import { CartEntry } from '../../models/cartentry.model';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-cart',
@@ -9,9 +13,11 @@ import { CartEntry } from './cartentry';
 })
 export class CartComponent {
   cart: CartEntry[];
+  currentUser?: User;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private userService: UserService, private modalService: NgbModal) {
     this.cart = this.cartService.Cart;
+    this.currentUser = userService.currentUser ?? undefined;
   }
 
   // cart: CartEntry[] = [
@@ -19,8 +25,7 @@ export class CartComponent {
   //   {prodId: 3, name: 'Dark Mode', image: 'darkMode.jpg', quantity: 4, price: 6.99, total: 27.95},
   //   {prodId: 9, name: 'Avengers', image: 'avengers.jpg', quantity: 2, price: 7.99, total: 15.98}];
 
-  removeItem(index: number): void {
-    // this.cart.splice(index, 1);
+  removeItem(index: number): void{
     this.cart = this.cartService.removeFromCart(index);
     this.cartService.Cart = this.cart;
   }
@@ -38,5 +43,10 @@ export class CartComponent {
       (this.cart[index].quantity * this.cart[index].price).toFixed(2)
     );
     this.cartService.Cart = this.cart;
+  }
+
+  openLogin() {
+    const modalRef = this.modalService.open(LoginComponent);
+    modalRef.componentInstance.name = 'Login';
   }
 }

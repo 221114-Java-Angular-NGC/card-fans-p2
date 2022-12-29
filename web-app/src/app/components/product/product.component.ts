@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { PRODUCTS } from '../../models/mock.products';
+import { Component, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { CartEntry } from '../cart/cartentry';
+import { CartEntry } from '../../models/cartentry.model';
+import { ProductPopupComponent } from '../product-popup/product-popup.component';
 import { RestDataSource } from 'src/app/services/rest.datasource';
 @Component({
   selector: 'app-product',
@@ -10,11 +12,12 @@ import { RestDataSource } from 'src/app/services/rest.datasource';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent {
+  @Input() products: Product[] = [];
   cart: CartEntry[];
-  products: Product[] = PRODUCTS;
 
   constructor(
     private cartService: CartService,
+    private modalService: NgbModal,
     private restDataSource: RestDataSource
   ) {
     this.cart = this.cartService.Cart;
@@ -25,5 +28,21 @@ export class ProductComponent {
 
   addCart(prodId: number) {
     this.cartService.addToCart(prodId);
+  }
+
+  cartButtonPress(event: any) {
+    let element = event.target;
+    event.stopPropagation();
+
+    element.textContent = 'Added!';
+    element.className = 'btn btn-dark';
+    setTimeout(() => {
+      element.textContent = 'Add to Cart';
+      element.className = 'btn btn-danger';
+    }, 1000);
+  }
+
+  openModal(index: number) {
+    this.modalService.open(ProductPopupComponent);
   }
 }

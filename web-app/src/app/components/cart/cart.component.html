@@ -31,7 +31,12 @@
         </div>
         <div id="bottom-links" class="d-flex justify-content-between">
                 <a routerLink="/products">&larr; Back to Shopping</a>
-                <a class="btn btn-danger" routerLink="/checkout" role="button">Checkout</a>
+                <div *ngIf="currentUser">
+                    <a class="btn btn-danger" routerLink="/checkout" role="button">Checkout</a>
+                </div>
+                <div *ngIf="!currentUser">
+                    <a class="btn btn-danger" role="button" (click)="openLogin()">Log in to Checkout</a>
+                </div>
         </div>
     </div>
 </ng-template>

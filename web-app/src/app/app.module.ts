@@ -21,6 +21,8 @@ import { NgbdModalComponent } from './components/modal/popup-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MockDataSource } from './services/mock.datasource';
 import { UserInfoPopoverComponent } from './components/user-info-popover/user-info-popover.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
+import { ProductPopupComponent } from './components/product-popup/product-popup.component';
 import { ValidationHelper } from './components/validation/validation_helper';
 import { ValidationErrorsDirective } from './components/validation/validationErrors.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -41,6 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserInfoPopoverComponent,
     ValidationHelper,
     ValidationErrorsDirective,
+    ProductPageComponent,
+    ProductPopupComponent,
   ],
   imports: [
     BrowserModule,

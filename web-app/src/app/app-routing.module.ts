@@ -5,9 +5,10 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './services/auth-guard/auth.guard';
 
 
 const routes: Routes = [
@@ -16,10 +17,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'products', component: ProductComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'products', component: ProductPageComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'confirmation', component: ConfirmationComponent }
 ]
 
