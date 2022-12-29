@@ -2,39 +2,48 @@
 <div id="checkout-div">
     <div id="form-div">
         <h4 class="text-center">Shipping Information</h4>
-        <form id="billing-form" class="row g-3">
+        <form id="billing-form" class="row g-3" [formGroup] = "shippingForm" (ngSubmit)="submitForm(shippingForm)">
             <div class="col-md-6">
-                <label for="inputFirst" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="inputFirst" [value]="user?.firstName ?? ''">
+                <label for="firstName" class="form-label" id="firstName-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName">
             </div>
             <div class="col-md-6">
-                <label for="inputLast" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="inputLast" [value]="user?.lastName ?? ''">
+                <label for="lastName" class="form-label" id="lastName-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label" id="email-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="col-md-6">
+                <label for="phoneNumber" class="form-label" id="phoneNumber-label">Phone Number</label>
+                <input type="email" class="form-control" id="phoneNumber" formControlName="phoneNumber">
             </div>
             <div class="col-12">
-                <label for="inputEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail" [value]="user?.email ?? ''">
+                <label for="address1" class="form-label" id="address1-label">Address Line 1</label>
+                <input type="text" class="form-control" id="address1" formControlName="address1">
             </div>
             <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" [value]="user?.addressLine1 ?? ''">
+                <label for="address2" class="form-label" id="address2-label">Address Line 2</label>
+                <input type="text" class="form-control" id="address2" formControlName="address2">
             </div>
             <div class="col-sm-4">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity" [value]="user?.city ?? ''">
+                <label for="city" class="form-label" id="city-label">City</label>
+                <input type="text" class="form-control" id="city" formControlName="city">
             </div>
             <div class="col-sm-4">
-                <label for="inputState" class="form-label">State</label>
-                <input type="text" class="form-control" id="inputState" [value]="user?.state ?? ''">
+                <label for="state" class="form-label" id="state-label">State</label>
+                <input type="text" class="form-control" id="state" formControlName="state">
             </div>
             <div class="col-sm-4">
-                <label for="inputZip" class="form-label">Zip Code</label>
-                <input type="text" class="form-control" id="inputZip" [value]="user?.zipCode ?? ''">
+                <label for="zipCode" class="form-label" id="zipCode-label">Zip Code</label>
+                <input type="text" class="form-control" id="zipCode" formControlName="zipCode">
             </div>
             <div class="col-12">
-                <label for="inputCountry" class="form-label">Country</label>
-                <input type="text" class="form-control" id="inputCountry">
+                <label for="country" class="form-label" id="country-label">Country</label>
+                <input type="text" class="form-control" id="country" formControlName="country">
             </div>
+            <p *ngIf="formInvalid" class="invalid-form">Please fill out the fields marked in red.</p>
             <button class="btn btn-primary" type="button" (click)="paypalButton($event.target)">Pay with PayPal</button>
             <button class="btn btn-danger" type="submit" id="order-btn" disabled>Place Order</button>
         </form> 

@@ -21,6 +21,10 @@ thead {
     border-bottom: 2px solid white;
 }
 
+.invalid-form {
+    color: red;
+}
+
 #checkout-div {
     display:flex;
     justify-content: center;

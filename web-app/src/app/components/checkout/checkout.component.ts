@@ -5,6 +5,7 @@ import { Order } from 'src/app/models/order.model';
 import { CartEntry } from '../../models/cartentry.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user-service.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -21,6 +22,8 @@ export class CheckoutComponent {
   shipping = 3.87;
   grandTotal: number = 0;
   user?: User;
+  shippingForm: FormGroup;
+  formInvalid = false;
 
   constructor(private cartService: CartService, private userService: UserService) {
     this.cart = this.cartService.Cart;
@@ -31,6 +34,48 @@ export class CheckoutComponent {
     this.grandTotal = this.subtotal + this.shipping;
 
     this.user = userService.currentUser;
+
+    this.shippingForm = new FormGroup({
+      firstName: new FormControl(
+        this.user?.firstName ?? '', {
+          validators: Validators.required
+      }),
+      lastName: new FormControl(
+        this.user?.lastName ?? '', {
+          validators: Validators.required
+      }),
+      email: new FormControl(
+        this.user?.email ?? '', {
+          validators: Validators.required
+      }),
+      phoneNumber: new FormControl(
+        this.user?.phoneNumber ?? '', {
+          validators: Validators.required
+      }),
+      address1: new FormControl(
+        this.user?.addressLine1 ?? '', {
+          validators: Validators.required
+      }),
+      address2: new FormControl(
+        this.user?.addressLine2 ?? ''
+      ),
+      city: new FormControl(
+        this.user?.city ?? '', {
+          validators: Validators.required
+      }),
+      state: new FormControl(
+        this.user?.state ?? '', {
+          validators: Validators.required
+      }),
+      zipCode: new FormControl(
+        this.user?.zipCode ?? '', {
+          validators: Validators.required
+      }),
+      country: new FormControl(
+        this.user?.country ?? '', {
+          validators: Validators.required
+      })
+    });
   }
 
   createOrder() {
@@ -40,7 +85,7 @@ export class CheckoutComponent {
       orderEntry.push(entry);
     });
 
-    let order: Order = new Order(orderEntry);
+    // let order: Order = new Order(orderEntry);
   }
 
   paypalButton(element: any) {
@@ -52,5 +97,19 @@ export class CheckoutComponent {
       element.className = "btn btn-success";
       orderButton?.removeAttribute("disabled");
     }, 1000)
+  }
+
+  submitForm(sForm: FormGroup){
+    if (sForm.invalid) {
+      this.formInvalid = true;
+      Object.keys(sForm.controls).forEach(field => {
+        if(sForm.controls[field].invalid) {
+          console.log("Invalid field: " + field);
+          document.getElementById(field + "-label")?.setAttribute("style", "color:red");
+        }
+      })
+    } else {
+      console.log("Form valid");
+    }
   }
 }
