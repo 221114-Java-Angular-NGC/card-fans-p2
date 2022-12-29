@@ -26,8 +26,17 @@ export class ProductComponent {
     });
   }
 
-  addCart(prodId: number) {
-    this.cartService.addToCart(prodId);
+  addCart(index: number) {
+    let prod = {
+      prodId: this.products[index].productId,
+      name: this.products[index].productName,
+      image: this.products[index].imgUrl ?? '',
+      quantity: 1,
+      price: this.products[index].price,
+      total: this.products[index].price,
+    };
+
+    this.cartService.addToCart(prod);
   }
 
   cartButtonPress(event: any) {

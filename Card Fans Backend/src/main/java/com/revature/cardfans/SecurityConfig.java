@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated().and()
                 // Stateless do conform to REST
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        httpSecurity.cors().disable();
+
         // Add JWT filter
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

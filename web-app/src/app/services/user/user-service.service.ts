@@ -82,10 +82,12 @@ export class UserService {
   removeUserDetails() {
     console.log('removing currentuser');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('jwtToken');
   }
 
   //Log out user by deleting user data in localStorage
   logout() {
+    localStorage.removeItem('jwtToken');
     localStorage.removeItem('currentUser');
   }
 }

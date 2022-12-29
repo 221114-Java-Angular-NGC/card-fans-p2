@@ -66,7 +66,7 @@ export class RestDataSource {
     return (
       this.http
         // http://localhost:8080/api/v1/users
-        .put<User>(this.baseUrl + 'users', user, {
+        .patch<User>(this.baseUrl + 'users', user, {
           headers: this.headers_object,
         })
         .pipe(catchError((err) => this.handleError(err)))

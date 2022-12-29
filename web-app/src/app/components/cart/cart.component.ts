@@ -15,7 +15,11 @@ export class CartComponent {
   cart: CartEntry[];
   currentUser?: User;
 
-  constructor(private cartService: CartService, private userService: UserService, private modalService: NgbModal) {
+  constructor(
+    private cartService: CartService,
+    private userService: UserService,
+    private modalService: NgbModal
+  ) {
     this.cart = this.cartService.Cart;
     this.currentUser = userService.currentUser ?? undefined;
   }
@@ -25,7 +29,7 @@ export class CartComponent {
   //   {prodId: 3, name: 'Dark Mode', image: 'darkMode.jpg', quantity: 4, price: 6.99, total: 27.95},
   //   {prodId: 9, name: 'Avengers', image: 'avengers.jpg', quantity: 2, price: 7.99, total: 15.98}];
 
-  removeItem(index: number): void{
+  removeItem(index: number): void {
     this.cart = this.cartService.removeFromCart(index);
     this.cartService.Cart = this.cart;
   }
@@ -48,5 +52,6 @@ export class CartComponent {
   openLogin() {
     const modalRef = this.modalService.open(LoginComponent);
     modalRef.componentInstance.name = 'Login';
+    modalRef.componentInstance.nextRoute = '/checkout';
   }
 }

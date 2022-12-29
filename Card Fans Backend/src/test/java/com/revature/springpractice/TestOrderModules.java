@@ -66,6 +66,7 @@ import org.springframework.restdocs.*;
 import org.springframework.restdocs.mockmvc.*;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -145,7 +146,7 @@ public class TestOrderModules {
                 order1.setUserId(1);
 
                 OrderItemRequest o = new OrderItemRequest();
-                o.setProductId(1);
+                o.setProductId(150);
                 o.setQuantity(3);
                 order1.insertOrderItem(o);
 
@@ -188,6 +189,7 @@ public class TestOrderModules {
 
         @DisplayName("1. Test Order controller,HTTP.POST, Create order")
         @Test
+        @WithMockUser(username = "anon2")
         public void testGetOrderByUserIdController() throws Exception {
 
                 ObjectMapper mapper = new ObjectMapper();

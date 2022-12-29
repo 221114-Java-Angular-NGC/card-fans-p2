@@ -4,7 +4,11 @@
     style="text-align: center; list-style: none"
   >
     <div class="card" (click)="openModal(ind)">
-      <img src="{{ i.pic }}" class="card-img-top" alt="{{ i.productName }}" />
+      <img
+        src="{{ i.imgUrl }}"
+        class="card-img-top"
+        alt="{{ i.productName }}"
+      />
       <div class="card-body">
         <h5 class="card-title">{{ i.productName }}</h5>
       </div>
@@ -14,7 +18,7 @@
       <div class="card-body">
         <a
           class="btn btn-danger"
-          (click)="addCart(i.productId); cartButtonPress($event)"
+          (click)="addCart(ind); cartButtonPress($event)"
           >Add to Cart</a
         >
       </div>
