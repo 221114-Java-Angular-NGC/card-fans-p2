@@ -25,7 +25,7 @@
   </style>
 </head>
 <body>
-  <div style="text-align: center;">
+  <div style="text-align: center">
     <h2>PLAYING CARDS</h2>
     <div style="padding-bottom: 20px">
       A collection of the finest decks of cards in the world.
@@ -35,7 +35,7 @@
   <div class="productGrid">
     <ul *ngFor="let i of products" style="text-align: center; list-style: none">
       <div class="card">
-        <img src="{{i.pic}}" class="card-img-top" alt="{{i.productName}}" />
+        <img src="{{i.imgUrl}}" class="card-img-top" alt="{{i.productName}}" />
         <div class="card-body">
           <h5 class="card-title">{{ i.productName }}</h5>
         </div>
@@ -43,7 +43,9 @@
           <li class="list-group-item">${{ i.price }}</li>
         </ul>
         <div class="card-body">
-          <a class="btn btn-danger" (click)="addCart(i.productId)" >Add to cart</a>
+          <a class="btn btn-danger" (click)="addCart(i.productId)"
+            >Add to cart</a
+          >
         </div>
       </div>
     </ul>

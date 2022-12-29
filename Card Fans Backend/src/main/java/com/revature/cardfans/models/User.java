@@ -36,7 +36,10 @@ import org.hibernate.validator.constraints.UniqueElements;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity(name = "users")
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = { "email", "user_name" }))
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "user_name"),
+        @UniqueConstraint(columnNames = "email")
+})
 
 public class User {
     @Id

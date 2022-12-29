@@ -3,10 +3,19 @@ package com.revature.cardfans.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.cardfans.dao.UserDao;
 import com.revature.cardfans.models.User;
+import com.revature.cardfans.models.payload.AuthResponse;
+import com.revature.cardfans.security.CustomUserDetails;
+import com.revature.cardfans.security.JwtTokenUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,17 +23,28 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 
 public class UserServiceImpl implements IUserService {
-    @Autowired
-    private UserDao userDao;
 
-    public UserServiceImpl(UserDao u) {
+    private UserDao userDao;
+    @Autowired
+    AuthenticationManager authManager;
+
+    private PasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    JwtTokenUtil jwtUtil;
+
+    @Autowired
+    public UserServiceImpl(UserDao u, PasswordEncoder p) {
         userDao = u;
+        bCryptPasswordEncoder = p;
 
     }
 
     @Override
     public Optional<User> registerUser(User user) {
         log.info("Attemping to register user");
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         return Optional.of(userDao.save(user));
 
     }
@@ -53,15 +73,22 @@ public class UserServiceImpl implements IUserService {
     // compares password and returns user encased in optional
     // else returns empty optional
     @Override
-    public Optional<User> login(String userName, String password) {
+    public Optional<AuthResponse> login(String userName, String password) {
 
-        log.info("Searching for user with username:{}", userName);
-        Optional<User> user = userDao.findByUsername(userName);
+        try {
+            Authentication authentication = authManager
+                    .authenticate(
+                            new UsernamePasswordAuthenticationToken(userName, password));
 
-        user.ifPresentOrElse((x) -> log.info("User found with username:{}", userName),
-                () -> log.info("Login attempt failed"));
+            User user = ((CustomUserDetails) (authentication.getPrincipal())).getUser();
+            String accessToken = jwtUtil.generateAccessToken(user);
+            AuthResponse response = new AuthResponse(user, accessToken);
+            return Optional.of(response);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return Optional.empty();
 
-        return user;
     }
 
 }

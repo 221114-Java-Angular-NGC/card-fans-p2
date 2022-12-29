@@ -50,6 +50,7 @@ public class OrderItem {
     @NotNull
     private Integer quantity;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "product_id")
     private Product product;

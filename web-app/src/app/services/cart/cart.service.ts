@@ -40,7 +40,7 @@ export class CartService {
         this.cart$.push({
           prodId: id,
           name: product.productName,
-          image: product.pic,
+          image: product.imgUrl ?? '',
           quantity: 1,
           price: product.price,
           total: product.price,

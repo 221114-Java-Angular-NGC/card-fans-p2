@@ -70,4 +70,6 @@ public class Product {
     @Column(name = "background")
     private String background;
 
+    @Column(name = "imgUrl")
+    private String imgUrl;
 }

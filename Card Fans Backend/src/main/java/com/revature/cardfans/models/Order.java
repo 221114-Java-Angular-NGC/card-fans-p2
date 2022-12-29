@@ -51,6 +51,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
     @NotNull
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "order")
     private List<OrderItem> items = new ArrayList<>();

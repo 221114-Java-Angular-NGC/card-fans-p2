@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import { LoginRequest } from '../models/login-request.model';
+import { AuthResponse } from '../models/auth-response.model';
 //import { HttpHeaders } from '@angular/common/http';
 
 const PROTOCOL = 'http';
@@ -13,10 +18,25 @@ const PORT = 8080;
 export class RestDataSource {
   baseUrl: string; //location of our Rest API
   auth_token?: string; //Maybe store jwt here for later
-
+  headers_object: HttpHeaders; // = new HttpHeaders();
   //HttpClient used for http requests similar to postman
   constructor(private http: HttpClient) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/v1/`;
+    this.baseUrl = 'http://localhost:8080/api/v1/'; //same as above
+    this.headers_object = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + (localStorage.getItem('jwtToken') ?? '')
+    );
+  }
+
+  //Register userinfo to database
+  register(user: User): Observable<User> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/auth/signup
+        .post<User>(this.baseUrl + 'auth/signup', user, {})
+        .pipe(catchError((err) => this.handleError(err)))
+    );
   }
 
   //Check if valid username password combo
@@ -26,33 +46,64 @@ export class RestDataSource {
     username: string;
     password: string;
   }): Observable<User> {
-    return this.http
-      .post<User>(this.baseUrl + 'auth/signin', login, {})
-      .pipe(catchError((err) => this.handleError(err)));
+    return (
+      this.http
+        // http://localhost:8080/api/v1/auth/signin
+        .post<AuthResponse>(this.baseUrl + 'auth/signin', login, {})
+        .pipe(
+          map((authResponse: AuthResponse) => {
+            localStorage.setItem('jwtToken', authResponse.accessToken);
+            this.auth_token = authResponse.accessToken;
+            return authResponse.user;
+          }),
+          catchError((err) => this.handleError(err))
+        )
+    );
   }
 
   //Update userinfo to database
   update(user: User): Observable<User> {
-    return this.http
-      .put<User>(this.baseUrl + 'users', user, {})
-      .pipe(catchError((err) => this.handleError(err)));
+    return (
+      this.http
+        // http://localhost:8080/api/v1/users
+        .put<User>(this.baseUrl + 'users', user, {
+          headers: this.headers_object,
+        })
+        .pipe(catchError((err) => this.handleError(err)))
+    );
   }
 
-  //Register userinfo to database
-  register(user: User): Observable<User> {
-    return this.http
-      .post<User>(this.baseUrl + 'auth/signup', user, {})
-      .pipe(catchError((err) => this.handleError(err)));
+  getProducts(): Observable<Product[]> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/products
+        .get<Product[]>(this.baseUrl + 'products')
+        .pipe(catchError((err) => this.handleError(err)))
+    );
   }
+
+  /*
+  getUserOrders(userId: number): Observable<Order[]> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/users/{userId}/orders
+        .get<Order[]>(this.baseUrl + 'users/' + userId + '/orders')
+        .pipe(catchError((err) => this.handleError(err)))
+    );
+  }
+
+
+  saveOrder(): Observable<Order> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/orders
+        .post<Order>(this.baseUrl + 'orders',{})
+        .pipe(catchError((err) => this.handleError(err)))
+    );
+  }
+*/
   //Throw error for any http request failures
   private handleError(res: HttpErrorResponse | any) {
     return throwError(() => new Error('Error is data service'));
   }
-
-  /*
-  getProducts(): Observable<Poductr[]> {
-    return this.http.get<Product[]>(this.baseUrl + 'products');
-  }
-
-    */
 }
