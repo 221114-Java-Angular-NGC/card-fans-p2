@@ -11,7 +11,7 @@ public interface OrderService {
 
     public List<Order> getOrdersByUserId(Integer userId);
 
-    public List<Order> getOrdersByUsername(String userId);
+    // public List<Order> getOrdersByUsername(String userId);
 
     public Optional<Order> saveOrder(PlaceOrderRequest orderReq);
 

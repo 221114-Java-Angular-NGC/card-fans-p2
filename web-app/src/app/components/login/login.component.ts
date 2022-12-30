@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   password: string = '';
   errorMessage: string = '';
 
+  //next page after successful login'
+  //defualt profile
+  public nextRoute: string = '/profile';
+
   isComponentAlive = false;
 
   loginForm = new FormGroup({
@@ -73,7 +77,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           if (response) {
             //save and goto profile component
             this.uServ.saveUserDetails(response);
-            this.router.navigateByUrl('/profile');
+            this.router.navigateByUrl(this.nextRoute);
             //close log in popup
             this.activeModal.close();
           } else {

@@ -31,11 +31,13 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findByUser_UserId(userId);
     }
 
-    @Override
-    public List<Order> getOrdersByUsername(String userId) {
-
-        return orderDao.findByUser_Username(userId);
-    }
+    /*
+     * @Override
+     * public List<Order> getOrdersByUsername(String userId) {
+     * 
+     * return orderDao.findByUser_Username(userId);
+     * }
+     */
 
     @Override
     public Optional<Order> saveOrder(PlaceOrderRequest orderRequest) {

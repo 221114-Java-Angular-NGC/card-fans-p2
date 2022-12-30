@@ -1,13 +1,17 @@
 package com.revature.cardfans.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.cardfans.models.User;
+import com.revature.cardfans.models.payload.AuthResponse;
 import com.revature.cardfans.models.payload.LoginRequest;
+
 import com.revature.cardfans.services.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,10 +34,10 @@ public class AuthController {
 
     /* Handles sing in/login attempts */
     @PostMapping("/signin")
-    public ResponseEntity<User> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AuthResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-        Optional<User> user = uServ.login(loginRequest.getUsername(), loginRequest.getPassword());
-        return user.map(ResponseEntity::ok).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));
+        Optional<AuthResponse> response = uServ.login(loginRequest.getUsername(), loginRequest.getPassword());
+        return response.map(ResponseEntity::ok).orElse(new ResponseEntity<>(HttpStatus.UNAUTHORIZED));
 
     }
 
