@@ -19,4 +19,14 @@
 
 #featured-products {
     text-align: center;
+    margin-top: 3%;
+}
+
+#featured-title {
+    margin-bottom: 2%;
+}
+
+#featured-more {
+    color:red;
+    font-size: 1.25rem;
 }
