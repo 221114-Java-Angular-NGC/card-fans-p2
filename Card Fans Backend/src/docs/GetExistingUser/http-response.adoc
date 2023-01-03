@@ -1,0 +1,11 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Content-Length: 195
+
+{"userId":1,"firstName":"john","lastName":"smith","username":"abe","email":"a@gmail.com","password":"secret","addressLine1":"123 street st","city":"new york","state":"new york","zipCode":"32456"}
+----

@@ -1,0 +1,10 @@
+[source,options="nowrap"]
+----
+{
+  "userId" : 1,
+  "items" : [ {
+    "productId" : 150,
+    "quantity" : 3
+  } ]
+}
+----

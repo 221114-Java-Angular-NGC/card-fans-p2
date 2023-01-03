@@ -1,7 +1,8 @@
 package com.revature.cardfans.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.revature.cardfans.models.payload.OrderItemRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,18 +17,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.*;
-import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.Table;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -42,7 +37,7 @@ public class OrderItem {
     private int orderItemId;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
     private Order order;
 
@@ -50,9 +45,18 @@ public class OrderItem {
     @NotNull
     private Integer quantity;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public OrderItem(OrderItemRequest o, Order ord) {
+
+        this.quantity = o.getQuantity();
+        this.order = ord;
+        Product p = new Product();
+        p.setProductId(o.getProductId());
+
+        this.product = p;
+    }
 
 }

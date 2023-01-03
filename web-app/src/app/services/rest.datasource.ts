@@ -9,6 +9,7 @@ import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import { LoginRequest } from '../models/login-request.model';
 import { AuthResponse } from '../models/auth-response.model';
+import { Order } from '../models/order.model';
 //import { HttpHeaders } from '@angular/common/http';
 
 const PROTOCOL = 'http';
@@ -69,7 +70,7 @@ export class RestDataSource {
         .patch<User>(this.baseUrl + 'users', user, {
           headers: this.headers_object,
         })
-        .pipe(catchError((err) => this.handleError(err)))
+      //.pipe(catchError((err) => this.handleError(err)))
     );
   }
 
@@ -81,13 +82,14 @@ export class RestDataSource {
         .pipe(catchError((err) => this.handleError(err)))
     );
   }
-
   /*
   getUserOrders(userId: number): Observable<Order[]> {
     return (
       this.http
         // http://localhost:8080/api/v1/users/{userId}/orders
-        .get<Order[]>(this.baseUrl + 'users/' + userId + '/orders')
+        .get<Order[]>(this.baseUrl + 'users/' + userId + '/orders', {
+          headers: this.headers_object,
+        })
         .pipe(catchError((err) => this.handleError(err)))
     );
   }

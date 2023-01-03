@@ -65,6 +65,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import org.springframework.restdocs.*;
 import org.springframework.restdocs.mockmvc.*;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
+import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.test.context.support.WithMockUser;
 
@@ -94,10 +95,18 @@ public class TestOrderModules {
         @BeforeEach
         public void setUp(WebApplicationContext webApplicationContext,
                         RestDocumentationContextProvider restDocumentation) {
+
+                /*
+                 * this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context)
+                 * .apply(documentationConfiguration(restDocumentation)).alwaysDo(document(
+                 * "perform",
+                 * Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                 * Preprocessors.preprocessResponse(Preprocessors.prettyPrint())))
+                 * .build();
+                 */
                 this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context)
                                 .apply(documentationConfiguration(restDocumentation))
                                 .build();
-
                 userDao = Mockito.mock(UserDao.class);
                 orderDao = Mockito.mock(OrderDao.class);
                 auth = Mockito.mock(Authentication.class);
@@ -203,7 +212,7 @@ public class TestOrderModules {
                                 .andExpect(MockMvcResultMatchers.jsonPath("$.orderId").exists())
                                 .andExpect(MockMvcResultMatchers.status().isOk())
                                 .andDo(MockMvcResultHandlers.print())
-                                .andDo(document("index"));
+                                .andDo(document("CreateOrder"));
 
         }
 

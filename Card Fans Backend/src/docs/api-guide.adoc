@@ -1,0 +1,14 @@
+operation::CreateOrder[snippets='http-request,http-response']
+operation::GetExistingUser[snippets='http-request,http-response']
+operation::GetNonExistingUser[snippets='http-request,http-response']
+
+operation::GetExistingUserOrders[snippets='http-request,http-response']
+operation::GetNonExistingUserOrders[snippets='http-request,http-response']
+
+operation::GetProducts[snippets='http-request,http-response']
+
+operation::OrderTests[snippets='http-request,http-response']
+
+operation::ProductTest[snippets='http-request,http-response']
+
+operation::UserTests[snippets='http-request,http-response']

@@ -64,6 +64,7 @@ public class TrialProductModules {
 	private static ProductService prodService;
 	private static ProductDao prodDao;
 	private static Authentication auth;
+	private String docLocation = "ProductTest";
 
 	public TrialProductModules() {
 	}
@@ -116,7 +117,7 @@ public class TrialProductModules {
 	public void shouldReturnProductList() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/products").accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andDo(document("index"));
+				.andDo(document("GetProducts"));
 
 	}
 

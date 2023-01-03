@@ -1,7 +1,6 @@
 package com.revature.cardfans.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,11 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.*;
-import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.UniqueElements;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -100,4 +95,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Authority> authorities = new ArrayList<>();
 
+    public User(Integer id) {
+        this.userId = id;
+    }
 }

@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"userId":1,"firstName":"john","lastName":"smith","username":"abe","email":"a@gmail.com","password":"secret","addressLine1":"123 street st","city":"new york","state":"new york","zipCode":"32456"}
+----

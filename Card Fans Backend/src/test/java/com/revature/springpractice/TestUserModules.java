@@ -165,7 +165,7 @@ class TestUserModules {
                                 .accept(MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(1))
                                 .andExpect(MockMvcResultMatchers.status().isOk())
-                                .andDo(document("index"));
+                                .andDo(document("GetExistingUser"));
 
         }
 
@@ -177,7 +177,7 @@ class TestUserModules {
                                 .accept(MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.jsonPath("$.userId").doesNotExist())
                                 .andExpect(MockMvcResultMatchers.status().isUnauthorized())
-                                .andDo(document("index"));
+                                .andDo(document("GetNonExistingUser"));
         }
 
         @DisplayName("3. Test User controller,HTTP.GET,Get orders by user id, user exists")
@@ -188,7 +188,7 @@ class TestUserModules {
                                 MockMvcRequestBuilders.get("/api/v1/users/{userId}/orders", 1).principal(auth)
                                                 .accept(MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.status().isOk())
-                                .andDo(document("index"));
+                                .andDo(document("GetExistingUserOrders"));
         }
 
         @DisplayName("3. Test User controller,HTTP.GET,Get orders by user id, user not exists")
@@ -201,7 +201,7 @@ class TestUserModules {
                                                 .accept(MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.jsonPath("$").exists())
                                 .andExpect(MockMvcResultMatchers.status().isOk())
-                                .andDo(document("index"));
+                                .andDo(document("GetNonExistingUserOrders"));
         }
 
         @DisplayName("4. Test User Service Registration -Success")

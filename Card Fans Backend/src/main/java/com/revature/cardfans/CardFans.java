@@ -1,5 +1,13 @@
 package com.revature.cardfans;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.IntStream;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -10,6 +18,7 @@ public class CardFans {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CardFans.class, args);
+
 	}
 
 }

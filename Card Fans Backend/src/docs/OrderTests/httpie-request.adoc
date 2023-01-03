@@ -1,0 +1,12 @@
+[source,bash]
+----
+$ echo '{
+  "userId" : 1,
+  "items" : [ {
+    "productId" : 150,
+    "quantity" : 3
+  } ]
+}' | http POST 'http://localhost:8080/api/v1/orders' \
+    'Content-Type:application/json' \
+    'Accept:application/json'
+----

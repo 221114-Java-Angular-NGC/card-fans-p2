@@ -1,6 +1,5 @@
 package com.revature.cardfans.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -16,12 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.cardfans.models.Authority;
 import com.revature.cardfans.models.Order;
-import com.revature.cardfans.models.OrderItem;
-import com.revature.cardfans.models.Product;
-import com.revature.cardfans.models.User;
-import com.revature.cardfans.models.payload.OrderItemRequest;
+
 import com.revature.cardfans.models.payload.PlaceOrderRequest;
 import com.revature.cardfans.models.payload.UserJwtInfo;
 import com.revature.cardfans.services.OrderService;
