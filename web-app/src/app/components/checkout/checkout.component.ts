@@ -6,6 +6,8 @@ import { CartEntry } from '../../models/cartentry.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RestDataSource } from 'src/app/services/rest.datasource';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -25,7 +27,10 @@ export class CheckoutComponent {
   shippingForm: FormGroup;
   formInvalid = false;
 
-  constructor(private cartService: CartService, private userService: UserService) {
+  constructor(private cartService: CartService, 
+    private userService: UserService, 
+    private restDataSource: RestDataSource,
+    private router: Router) {
     this.cart = this.cartService.Cart;
 
     for (let entry of this.cart) {
@@ -85,7 +90,7 @@ export class CheckoutComponent {
       orderEntry.push(entry);
     });
 
-    // let order: Order = new Order(orderEntry);
+   // let order: Order = new Order(orderEntry);
   }
 
   paypalButton(element: any) {
@@ -110,6 +115,36 @@ export class CheckoutComponent {
       })
     } else {
       console.log("Form valid");
+        
+      let orderEntry: OrderEntry[] = [];
+
+      this.cartService.Cart.forEach((entry) => {
+        orderEntry.push({"prodId":entry.prodId,"quantity":entry.quantity});
+      });
+
+  
+      let order: Order = new Order(orderEntry,sForm.getRawValue(),this.grandTotal,1);
+
+      this.restDataSource.postOrder(order).subscribe((response) => {
+        //if successful, response is User object
+        if (response) {
+
+          localStorage.setItem('orderId',""+response.orderId);
+          this.cartService.Cart = [];
+          this.router.navigate(["/confirmation"]);
+         
+         //alert(`Order created successfully id: ${ response.orderId }.`);
+         //sometext
+      
+        } else {
+          alert("Order could not go through, please try again.");
+        //else 
+        //give an error on te form
+        }
+      });
+     
+
     }
   }
+
 }

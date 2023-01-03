@@ -21,7 +21,7 @@ import com.revature.cardfans.models.Order;
 import com.revature.cardfans.models.OrderItem;
 import com.revature.cardfans.models.Product;
 import com.revature.cardfans.models.User;
-import com.revature.cardfans.models.payload.OrderItemRequest;
+import com.revature.cardfans.models.payload.OrderEntry;
 import com.revature.cardfans.models.payload.PlaceOrderRequest;
 import com.revature.cardfans.models.payload.UserJwtInfo;
 import com.revature.cardfans.services.OrderService;
@@ -49,6 +49,7 @@ public class OrderController {
     public ResponseEntity<Order> createOrder(@Valid @RequestBody PlaceOrderRequest orderRequest, Authentication auth) {
 
         log.info("Attempting to create order");
+        log.info(orderRequest.toString());
         UserJwtInfo userInfo = (UserJwtInfo) auth.getPrincipal();
         orderRequest.setUserId(userInfo.getUserId());
         Optional<Order> order = orderServ.saveOrder(orderRequest);

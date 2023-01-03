@@ -4,3 +4,12 @@ nav {
 .navbar-nav input {
     background-color: #1c1c1c;
 }
+#text-logo {
+    font-family: 'Rye', cursive;
+}
+
+#logo {
+    margin-bottom: 3%;
+    margin-left: 5%;
+    margin-right: 3%;
+}

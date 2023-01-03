@@ -11,14 +11,31 @@ import lombok.Data;
 
 @Data
 public class PlaceOrderRequest {
-    private int userId;
-    private List<OrderItemRequest> items;
+
+    private List<OrderEntry> items;
+     private int userId ;
+     private String firstName; 
+     private String lastName ;
+     private String email ;
+     private String phoneNumber ;
+     private String address1 ;
+     private String address2;
+     private String city ;
+     private String state;
+     private String zipCode ;
+     private String country ;
+
+     private double total;
+    
+
+
+
 
     public PlaceOrderRequest() {
         items = new ArrayList<>();
     }
 
-    public void insertOrderItem(OrderItemRequest o) {
+    public void insertOrderItem(OrderEntry o) {
         items.add(o);
     }
 }

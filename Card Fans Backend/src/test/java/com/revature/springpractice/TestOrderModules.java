@@ -51,7 +51,7 @@ import com.revature.cardfans.models.Order;
 import com.revature.cardfans.models.OrderItem;
 import com.revature.cardfans.models.Product;
 import com.revature.cardfans.models.User;
-import com.revature.cardfans.models.payload.OrderItemRequest;
+import com.revature.cardfans.models.payload.OrderEntry;
 import com.revature.cardfans.models.payload.PlaceOrderRequest;
 import com.revature.cardfans.models.payload.UserJwtInfo;
 import com.revature.cardfans.services.IUserService;
@@ -145,7 +145,7 @@ public class TestOrderModules {
                 order1 = new PlaceOrderRequest();
                 order1.setUserId(1);
 
-                OrderItemRequest o = new OrderItemRequest();
+                OrderEntry o = new OrderEntry();
                 o.setProductId(150);
                 o.setQuantity(3);
                 order1.insertOrderItem(o);

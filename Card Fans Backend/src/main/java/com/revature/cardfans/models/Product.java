@@ -34,7 +34,7 @@ public class Product {
 
     @Column(name = "product_name")
 
-    @NotNull
+   // @NotNull
     private String productName;
 
     // @Size(min = 2, max = 15)
@@ -55,16 +55,16 @@ public class Product {
 
     // @Size(min = 5)
     @Column(name = "price")
-    @NotNull
+    //@NotNull
     private Double price;
 
     // @Size(min = 2, max = 20)
     @Column(name = "description")
     private String description;
 
-    @Size(min = 0)
+    
     @Column(name = "quantity")
-    @NotNull
+   
     private Integer quantity;
 
     @Column(name = "background")

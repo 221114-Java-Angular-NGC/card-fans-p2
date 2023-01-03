@@ -9,6 +9,8 @@ import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import { LoginRequest } from '../models/login-request.model';
 import { AuthResponse } from '../models/auth-response.model';
+import { Order } from '../models/order.model';
+import { OrderCreateResponse } from '../models/order-response.model';
 //import { HttpHeaders } from '@angular/common/http';
 
 const PROTOCOL = 'http';
@@ -60,7 +62,6 @@ export class RestDataSource {
         )
     );
   }
-
   //Update userinfo to database
   update(user: User): Observable<User> {
     return (
@@ -69,7 +70,7 @@ export class RestDataSource {
         .patch<User>(this.baseUrl + 'users', user, {
           headers: this.headers_object,
         })
-        .pipe(catchError((err) => this.handleError(err)))
+      //.pipe(catchError((err) => this.handleError(err)))
     );
   }
 
@@ -83,7 +84,7 @@ export class RestDataSource {
   }
 
   getProductByName(productName: String): Observable<Product> {
-    productName = productName.replace(/\s/g, '+')
+    productName = productName.replace(/\s/g, '+');
     return (
       this.http
         // http://localhost:8080/api/v1/products/{name}
@@ -91,6 +92,17 @@ export class RestDataSource {
         .pipe(catchError((err) => this.handleError(err)))
     );
   }
+  postOrder(order: Order): Observable<OrderCreateResponse> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/orders
+        .post<OrderCreateResponse>(this.baseUrl + 'orders', order, {
+          headers: this.headers_object,
+        })
+        .pipe(catchError((err) => this.handleError(err)))
+    );
+  }
+
   /*
   getUserOrders(userId: number): Observable<Order[]> {
     return (
