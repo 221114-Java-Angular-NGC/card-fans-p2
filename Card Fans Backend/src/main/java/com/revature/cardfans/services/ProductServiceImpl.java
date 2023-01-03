@@ -33,4 +33,10 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findById(productId);
     }
 
+	@Override
+	public Product getProductByName(String productName) {
+		String parsedName = productName.replace('+', ' ');
+		return productDao.findByProductName(parsedName);
+	}
+
 }

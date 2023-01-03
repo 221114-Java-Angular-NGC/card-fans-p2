@@ -41,5 +41,15 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
 
     }
+    
+    /*
+     * Gets a product by its name
+     */
+    @GetMapping("/{name}")
+    public ResponseEntity<Product> getProductByName(@PathVariable String name) {
+    	Product product = pServ.getProductByName(name);
+    	System.out.println("Got product: " + product);
+    	return new ResponseEntity<>(product, HttpStatus.OK);
+    }
 
 }

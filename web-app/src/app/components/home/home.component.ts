@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PRODUCTS } from 'src/app/models/mock.products';
 import { Product } from 'src/app/models/product.model';
+import { RestDataSource } from 'src/app/services/rest.datasource';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,18 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  featuredProducts: Product[] = [
-    PRODUCTS[0],
-    PRODUCTS[1],
-    PRODUCTS[2]
-  ]
+  featuredProducts: Product[] = [];
+  
+  constructor(private restDataSource: RestDataSource) {
+    this.restDataSource.getProductByName("Yellow Submarine").subscribe((x) => {
+      this.featuredProducts.push(x);
+      console.log(x);
+    });
+    this.restDataSource.getProductByName("Koi V2").subscribe((x) => {
+      this.featuredProducts.push(x);
+    });
+    this.restDataSource.getProductByName("8 Bit Red").subscribe((x) => {
+      this.featuredProducts.push(x);
+    });
+  }
 }

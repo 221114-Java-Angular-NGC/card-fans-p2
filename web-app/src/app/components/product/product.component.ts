@@ -17,13 +17,10 @@ export class ProductComponent {
 
   constructor(
     private cartService: CartService,
-    private modalService: NgbModal,
-    private restDataSource: RestDataSource
+    private modalService: NgbModal
   ) {
     this.cart = this.cartService.Cart;
-    this.restDataSource.getProducts().subscribe((x) => {
-      this.products = x;
-    });
+    
   }
 
   addCart(index: number) {

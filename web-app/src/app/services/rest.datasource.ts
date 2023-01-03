@@ -82,6 +82,15 @@ export class RestDataSource {
     );
   }
 
+  getProductByName(productName: String): Observable<Product> {
+    productName = productName.replace(/\s/g, '+')
+    return (
+      this.http
+        // http://localhost:8080/api/v1/products/{name}
+        .get<Product>(this.baseUrl + 'products/' + productName)
+        .pipe(catchError((err) => this.handleError(err)))
+    );
+  }
   /*
   getUserOrders(userId: number): Observable<Order[]> {
     return (
