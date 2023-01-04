@@ -51,66 +51,42 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonIgnore
-    @NotNull
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "order")
     private List<OrderItem> items = new ArrayList<>();
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "total")
     private double total;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "firstName")
     private String firstName;
-    
-    @JsonIgnore
-    @NotNull
+
     @Column(name = "lastName")
     private String lastName;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "email")
     private String email;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "address1")
     private String address1;
 
-    @JsonIgnore
     @Column(name = "address2")
     private String address2;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "city")
     private String city;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "state")
     private String state;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "zipCode")
     private String zipCode;
 
-    @JsonIgnore
-    @NotNull
     @Column(name = "country")
     private String country;
 
-    
     public void insertOrderItem(OrderItem o) {
         items.add(o);
     }

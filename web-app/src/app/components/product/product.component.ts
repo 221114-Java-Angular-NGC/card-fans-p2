@@ -14,13 +14,14 @@ import { RestDataSource } from 'src/app/services/rest.datasource';
 export class ProductComponent {
   @Input() products: Product[] = [];
   cart: CartEntry[];
-
+  public page: number = 1;
+  public pageSize: number = 27;
+  public collectionSize: number = 1;
   constructor(
     private cartService: CartService,
     private modalService: NgbModal
   ) {
     this.cart = this.cartService.Cart;
-    
   }
 
   addCart(index: number) {
@@ -32,7 +33,7 @@ export class ProductComponent {
       price: this.products[index].price,
       total: this.products[index].price,
     };
-
+    console.log(this.products.length);
     this.cartService.addToCart(prod);
   }
 
@@ -49,6 +50,6 @@ export class ProductComponent {
   }
 
   openModal(index: number) {
-    this.modalService.open(ProductPopupComponent);
+    // this.modalService.open(ProductPopupComponent);
   }
 }

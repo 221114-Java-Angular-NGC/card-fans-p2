@@ -21,6 +21,7 @@ export class CartService {
   addToCart(prod: CartEntry): void {
     //check if the product is already in the cart
     //only checks if the cart isn't empty
+    console.log(prod);
     if (this.cart$.length != 0) {
       for (let entry of this.cart$) {
         //updates quantity and total when it finds a product with the same id

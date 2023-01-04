@@ -47,11 +47,10 @@ public class OrderItem {
     private Order order;
 
     @Column(name = "quantity")
- 
+
     private Integer quantity;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "product_id")
     private Product product;
 

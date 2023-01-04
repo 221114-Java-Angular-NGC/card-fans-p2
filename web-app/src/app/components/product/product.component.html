@@ -1,9 +1,12 @@
 <div class="productGrid">
   <ul
-    *ngFor="let i of products; let ind = index"
+    *ngFor="
+      let i of products | slice : (page - 1) * pageSize : page * pageSize;
+      let ind = index
+    "
     style="text-align: center; list-style: none"
   >
-    <div class="card" (click)="openModal(ind)">
+    <div class="card">
       <img
         src="{{ i.imgUrl }}"
         class="card-img-top"
@@ -18,10 +21,31 @@
       <div class="card-body">
         <a
           class="btn btn-danger"
-          (click)="addCart(ind); cartButtonPress($event)"
+          (click)="addCart(i.productId); cartButtonPress($event)"
           >Add to Cart</a
         >
       </div>
     </div>
   </ul>
+  <div
+    id="pag"
+    style="
+      align-content: center;
+      list-style: none;
+      width: 100%;
+      display: block;
+      position: relative;
+      justify-content: center;
+    "
+  >
+    <ngb-pagination
+      *ngIf="products.length > 10"
+      class="mb-3 d-flex flex-nowrap px-2"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="products.length"
+      [maxSize]="10"
+      [boundaryLinks]="true"
+    ></ngb-pagination>
+  </div>
 </div>

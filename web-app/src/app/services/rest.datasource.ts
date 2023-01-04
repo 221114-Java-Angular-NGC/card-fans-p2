@@ -11,6 +11,7 @@ import { LoginRequest } from '../models/login-request.model';
 import { AuthResponse } from '../models/auth-response.model';
 import { Order } from '../models/order.model';
 import { OrderCreateResponse } from '../models/order-response.model';
+import { OrderGetResponse } from '../models/order-get-response.model';
 //import { HttpHeaders } from '@angular/common/http';
 
 const PROTOCOL = 'http';
@@ -56,6 +57,10 @@ export class RestDataSource {
           map((authResponse: AuthResponse) => {
             localStorage.setItem('jwtToken', authResponse.accessToken);
             this.auth_token = authResponse.accessToken;
+            this.headers_object = new HttpHeaders().set(
+              'Authorization',
+              'Bearer ' + (authResponse.accessToken ?? '')
+            );
             return authResponse.user;
           }),
           catchError((err) => this.handleError(err))
@@ -103,16 +108,17 @@ export class RestDataSource {
     );
   }
 
-  /*
-  getUserOrders(userId: number): Observable<Order[]> {
+  getUserOrders(userId: number): Observable<OrderGetResponse[]> {
     return (
       this.http
         // http://localhost:8080/api/v1/users/{userId}/orders
-        .get<Order[]>(this.baseUrl + 'users/' + userId + '/orders')
+        .get<OrderGetResponse[]>(this.baseUrl + 'users/' + userId + '/orders', {
+          headers: this.headers_object,
+        })
         .pipe(catchError((err) => this.handleError(err)))
     );
   }
-
+  /*
 
   saveOrder(): Observable<Order> {
     return (

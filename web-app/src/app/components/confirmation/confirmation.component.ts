@@ -13,9 +13,9 @@ export class ConfirmationComponent {
   }
 
   //Last lifecycle hook after initializing
-  ngAfterViewChecked() {
+  /* ngAfterViewChecked() {
     setTimeout(() => {
       this.router.navigate(["/home"]);
     }, 6000);
-  }
+  }*/
 }
