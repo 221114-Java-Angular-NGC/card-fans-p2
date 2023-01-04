@@ -6,21 +6,23 @@ import { RestDataSource } from 'src/app/services/rest.datasource';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
   featuredProducts: Product[] = [];
-  
+
   constructor(private restDataSource: RestDataSource) {
-    this.restDataSource.getProductByName("Yellow Submarine").subscribe((x) => {
+    this.restDataSource.getProductByName('Yellow Submarine').subscribe((x) => {
       this.featuredProducts.push(x);
       console.log(x);
     });
-    this.restDataSource.getProductByName("Koi V2").subscribe((x) => {
+    this.restDataSource.getProductByName('Koi V2').subscribe((x) => {
       this.featuredProducts.push(x);
+      console.log(x);
     });
-    this.restDataSource.getProductByName("8 Bit Red").subscribe((x) => {
+    this.restDataSource.getProductByName('8 Bit Red').subscribe((x) => {
       this.featuredProducts.push(x);
+      console.log(x);
     });
   }
 }

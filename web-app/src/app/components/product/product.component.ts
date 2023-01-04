@@ -25,6 +25,8 @@ export class ProductComponent {
   }
 
   addCart(index: number) {
+    console.log(this.products);
+    console.log(this.products[index]);
     let prod = {
       prodId: this.products[index].productId,
       name: this.products[index].productName,
@@ -33,7 +35,7 @@ export class ProductComponent {
       price: this.products[index].price,
       total: this.products[index].price,
     };
-    console.log(this.products.length);
+
     this.cartService.addToCart(prod);
   }
 
