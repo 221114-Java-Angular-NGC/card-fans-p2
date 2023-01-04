@@ -191,7 +191,17 @@ public class TestOrderModules {
         @Test
         @WithMockUser(username = "anon2")
         public void testGetOrderByUserIdController() throws Exception {
-
+        order1.setAddress1("asd");
+        order1.setCity("asdsda");
+        order1.setCountry("USA");
+        order1.setPhoneNumber("9890-8980");
+        order1.setEmail("asd@gmail.com");
+                order1.setTotal(100.00);
+                order1.setFirstName("abe");
+                order1.setLastName("bar");
+                order1.setAddress2("asdasd");
+                order1.setZipCode("1231");
+                order1.setState("asdasd");
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
                 ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
