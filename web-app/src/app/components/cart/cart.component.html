@@ -1,7 +1,10 @@
 <div class="container">
 <h2>Shopping Cart</h2>
 <ng-container *ngIf="cart.length == 0; else showCart">
-    <h5 class="no-items">No items in your cart. <a routerLink="/products">Click here to browse for some!</a></h5>
+    <div id="empty-cart">
+       <h5 class="no-items">No items in your cart. <a routerLink="/products">Click here to browse for some!</a></h5> 
+    </div>
+    
 </ng-container>
 
 <ng-template #showCart>
@@ -30,7 +33,7 @@
             <p><strong>Grand Total: ${{getGrandTotal().toFixed(2)}}</strong></p>
         </div>
         <div id="bottom-links" class="d-flex justify-content-between">
-                <a routerLink="/products">&larr; Back to Shopping</a>
+                <a routerLink="/products" id="back-link">&larr; Back to Shopping</a>
                 <div *ngIf="currentUser">
                     <a class="btn btn-danger" routerLink="/checkout" role="button">Checkout</a>
                 </div>

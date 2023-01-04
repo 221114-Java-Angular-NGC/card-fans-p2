@@ -6,3 +6,12 @@ h5,
 h6 {
   color: #212529;
 }
+
+#button-div {
+  display: flex;
+  justify-content: center;
+}
+
+#submit-div {
+  margin-top: 2%;
+}

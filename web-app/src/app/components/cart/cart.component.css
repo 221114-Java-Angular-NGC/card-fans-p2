@@ -46,6 +46,10 @@ input {
     margin-top: 3%;
 }
 
+#empty-cart {
+    margin-bottom:20%;
+}
+
 #grand-total p {
     text-align: right;
     margin-right: 3%;
@@ -53,4 +57,7 @@ input {
 
 #bottom-links {
     margin: auto 6% auto;
+}
+#back-link{
+    color: 	#df4759;
 }

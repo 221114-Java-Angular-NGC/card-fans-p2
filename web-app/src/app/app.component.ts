@@ -11,6 +11,7 @@ import { UserService } from './services/user/user-service.service';
 export class AppComponent {
   title = 'web-app';
   public authenticated: boolean = false;
+  public currentYear = new Date().getFullYear();
 
   constructor(private authServ: AuthService) {}
 
