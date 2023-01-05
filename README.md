@@ -18,7 +18,7 @@ The following software must be installed before you're able to run the web app:
 3. Make `spring.jpa.hibernate.ddl-auto` equal to `create`. ***Once you run Spring for the first time, change it back to `update`.***
 4. *Optional:* If you already have another program running on port 8080, change `server.port` to something different.
 
-### Preparing Angular
+#### Preparing Angular
 * Within your terminal of choice, navigate to `.\web-app` and run the command `npm install`.
 * If you changed the port the Spring server runs on, open up `.\web-app\src\app\services\rest.datasource.ts`. Find `this.baseUrl` which is being set to a URL and change the `8080` port to the port you defined.
 
