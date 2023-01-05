@@ -4,6 +4,7 @@ input {
 }
 input:focus {
   background-color: #212529;
+  color: white;
 }
 
 #form-div {

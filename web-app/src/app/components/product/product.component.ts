@@ -25,6 +25,7 @@ export class ProductComponent {
   }
 
   addCart(index: number) {
+    index = index - 1;
     console.log(this.products);
     console.log(this.products[index]);
     let prod = {

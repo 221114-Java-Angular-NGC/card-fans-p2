@@ -31,7 +31,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.*;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
+
 
 @Data
 @AllArgsConstructor
