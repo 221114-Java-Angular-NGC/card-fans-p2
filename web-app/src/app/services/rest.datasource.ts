@@ -9,6 +9,9 @@ import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import { LoginRequest } from '../models/login-request.model';
 import { AuthResponse } from '../models/auth-response.model';
+import { Order } from '../models/order.model';
+import { OrderCreateResponse } from '../models/order-response.model';
+import { OrderGetResponse } from '../models/order-get-response.model';
 //import { HttpHeaders } from '@angular/common/http';
 
 const PROTOCOL = 'http';
@@ -54,13 +57,16 @@ export class RestDataSource {
           map((authResponse: AuthResponse) => {
             localStorage.setItem('jwtToken', authResponse.accessToken);
             this.auth_token = authResponse.accessToken;
+            this.headers_object = new HttpHeaders().set(
+              'Authorization',
+              'Bearer ' + (authResponse.accessToken ?? '')
+            );
             return authResponse.user;
           }),
           catchError((err) => this.handleError(err))
         )
     );
   }
-
   //Update userinfo to database
   update(user: User): Observable<User> {
     return (
@@ -69,7 +75,7 @@ export class RestDataSource {
         .patch<User>(this.baseUrl + 'users', user, {
           headers: this.headers_object,
         })
-        .pipe(catchError((err) => this.handleError(err)))
+      //.pipe(catchError((err) => this.handleError(err)))
     );
   }
 
@@ -82,16 +88,37 @@ export class RestDataSource {
     );
   }
 
-  /*
-  getUserOrders(userId: number): Observable<Order[]> {
+  getProductByName(productName: String): Observable<Product> {
+    productName = productName.replace(/\s/g, '+');
     return (
       this.http
-        // http://localhost:8080/api/v1/users/{userId}/orders
-        .get<Order[]>(this.baseUrl + 'users/' + userId + '/orders')
+        // http://localhost:8080/api/v1/products/{name}
+        .get<Product>(this.baseUrl + 'products/' + productName)
+        .pipe(catchError((err) => this.handleError(err)))
+    );
+  }
+  postOrder(order: Order): Observable<OrderCreateResponse> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/orders
+        .post<OrderCreateResponse>(this.baseUrl + 'orders', order, {
+          headers: this.headers_object,
+        })
         .pipe(catchError((err) => this.handleError(err)))
     );
   }
 
+  getUserOrders(userId: number): Observable<OrderGetResponse[]> {
+    return (
+      this.http
+        // http://localhost:8080/api/v1/users/{userId}/orders
+        .get<OrderGetResponse[]>(this.baseUrl + 'users/' + userId + '/orders', {
+          headers: this.headers_object,
+        })
+        .pipe(catchError((err) => this.handleError(err)))
+    );
+  }
+  /*
 
   saveOrder(): Observable<Order> {
     return (

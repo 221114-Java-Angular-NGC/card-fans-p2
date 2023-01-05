@@ -50,7 +50,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtRequestFilter jwtRequestFilter)
             throws Exception {
         httpSecurity.cors().and().csrf().disable().authorizeHttpRequests()
-                .antMatchers("/api/v1/auth/signin", "/api/v1/auth/signup", "/api/v1/products")
+                .antMatchers("/api/v1/auth/signin", "/api/v1/auth/signup", "/api/v1/products", "/api/v1/products/*")
                 .permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // All other, needs authentication
                 .anyRequest().authenticated().and()

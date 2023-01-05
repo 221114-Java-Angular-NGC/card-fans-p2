@@ -14,19 +14,20 @@ import { RestDataSource } from 'src/app/services/rest.datasource';
 export class ProductComponent {
   @Input() products: Product[] = [];
   cart: CartEntry[];
-
+  public page: number = 1;
+  public pageSize: number = 27;
+  public collectionSize: number = 1;
   constructor(
     private cartService: CartService,
-    private modalService: NgbModal,
-    private restDataSource: RestDataSource
+    private modalService: NgbModal
   ) {
     this.cart = this.cartService.Cart;
-    this.restDataSource.getProducts().subscribe((x) => {
-      this.products = x;
-    });
   }
 
   addCart(index: number) {
+    index = index - 1;
+    console.log(this.products);
+    console.log(this.products[index]);
     let prod = {
       prodId: this.products[index].productId,
       name: this.products[index].productName,
@@ -52,6 +53,6 @@ export class ProductComponent {
   }
 
   openModal(index: number) {
-    this.modalService.open(ProductPopupComponent);
+    // this.modalService.open(ProductPopupComponent);
   }
 }

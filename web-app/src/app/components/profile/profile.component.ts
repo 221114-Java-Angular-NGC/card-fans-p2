@@ -92,4 +92,7 @@ export class ProfileComponent {
       // user: User = { ...form.value };
     }
   }
+  startEdit() {
+    this.editProfile = true;
+  }
 }

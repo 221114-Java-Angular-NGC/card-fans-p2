@@ -10,5 +10,7 @@ public interface ProductService {
     public List<Product> retrieveProducts();
 
     public Optional<Product> getProductById(Integer productId);
+    
+    public Product getProductByName(String productName);
 
 }

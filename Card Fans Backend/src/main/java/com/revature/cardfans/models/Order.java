@@ -31,7 +31,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.*;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
+
 
 @Data
 @AllArgsConstructor
@@ -51,10 +51,41 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonIgnore
-    @NotNull
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "order")
     private List<OrderItem> items = new ArrayList<>();
+
+    @Column(name = "total")
+    private double total;
+
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
+    @Column(name = "address1")
+    private String address1;
+
+    @Column(name = "address2")
+    private String address2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "zipCode")
+    private String zipCode;
+
+    @Column(name = "country")
+    private String country;
 
     public void insertOrderItem(OrderItem o) {
         items.add(o);

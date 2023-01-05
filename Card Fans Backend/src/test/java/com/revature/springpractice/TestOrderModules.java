@@ -51,7 +51,7 @@ import com.revature.cardfans.models.Order;
 import com.revature.cardfans.models.OrderItem;
 import com.revature.cardfans.models.Product;
 import com.revature.cardfans.models.User;
-import com.revature.cardfans.models.payload.OrderItemRequest;
+import com.revature.cardfans.models.payload.OrderEntry;
 import com.revature.cardfans.models.payload.PlaceOrderRequest;
 import com.revature.cardfans.models.payload.UserJwtInfo;
 import com.revature.cardfans.services.IUserService;
@@ -145,7 +145,7 @@ public class TestOrderModules {
                 order1 = new PlaceOrderRequest();
                 order1.setUserId(1);
 
-                OrderItemRequest o = new OrderItemRequest();
+                OrderEntry o = new OrderEntry();
                 o.setProductId(150);
                 o.setQuantity(3);
                 order1.insertOrderItem(o);
@@ -191,7 +191,17 @@ public class TestOrderModules {
         @Test
         @WithMockUser(username = "anon2")
         public void testGetOrderByUserIdController() throws Exception {
-
+        order1.setAddress1("asd");
+        order1.setCity("asdsda");
+        order1.setCountry("USA");
+        order1.setPhoneNumber("9890-8980");
+        order1.setEmail("asd@gmail.com");
+                order1.setTotal(100.00);
+                order1.setFirstName("abe");
+                order1.setLastName("bar");
+                order1.setAddress2("asdasd");
+                order1.setZipCode("1231");
+                order1.setState("asdasd");
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
                 ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();

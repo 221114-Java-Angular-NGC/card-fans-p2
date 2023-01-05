@@ -27,6 +27,7 @@ import { ValidationHelper } from './components/validation/validation_helper';
 import { ValidationErrorsDirective } from './components/validation/validationErrors.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ValidationErrorsDirective,
     ProductPageComponent,
     ProductPopupComponent,
+    OrderSummaryComponent,
   ],
   imports: [
     BrowserModule,
